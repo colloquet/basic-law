@@ -4,9 +4,24 @@
 
     <hr>
 
-    <div class="uk-flex uk-width-1-1 uk-margin-bottom" data-uk-button-radio>
-      <button class="uk-button uk-width-1-2 uk-active" @click="currentView = 'AllQuestions'">全部問題</button>
-      <button class="uk-button uk-width-1-2" @click="currentView = 'RandomQuestions'">隨機15條</button>
+    <div class="uk-flex uk-width-1-1 uk-margin-bottom">
+      <a
+        href="#all"
+        class="uk-button uk-width-1-2"
+        :class="{ 'uk-active': type === 'all' }"
+        @click.prevent="updateType('all')"
+      >
+        全部問題
+      </a>
+
+      <a
+        href="#random"
+        class="uk-button uk-width-1-2"
+        :class="{ 'uk-active': type === 'random' }"
+        @click.prevent="updateType('random')"
+      >
+        隨機15條
+      </a>
     </div>
 
     <div class="uk-alert" data-uk-alert>
@@ -14,44 +29,48 @@
       <p>試題的次序每次都是隨機，未來將陸續加入更多練習題。</p>
     </div>
 
-
     <transition name="fade" mode="out-in">
-      <keep-alive>
-        <component :is="currentView" :questions="questions"></component>
-      </keep-alive>
+      <quiz :key="type" :type="type"></quiz>
     </transition>
   </div>
 </template>
 
 <script>
-/* global ga */
-import AllQuestions from '../components/AllQuestions';
-import RandomQuestions from '../components/RandomQuestions';
-import questions from '../questions';
+import Quiz from '../components/Quiz'
 
 export default {
   components: {
-    AllQuestions,
-    RandomQuestions,
+    Quiz,
   },
-  head: {
-    title: {
-      inner: '香港CRE基本法測試練習試題',
-    },
+  metaInfo: {
+    title: '香港CRE基本法測試練習試題',
     meta: [
-      { name: 'description', content: '提供超過50條模擬香港基本法CRE測試練習試題。', id: 'meta-description' },
+      { name: 'description', content: '提供超過50條模擬香港基本法CRE測試練習試題。' },
     ],
+  },
+  methods: {
+    updateType(type) {
+      this.type = type
+    },
+  },
+  watch: {
+    $route(newVal, oldVal) {
+      if (newVal.query.type !== oldVal.query.type) {
+        this.type = newVal.query.type
+      }
+    },
   },
   data() {
     return {
-      currentView: 'AllQuestions',
-      questions,
-    };
+      type: 'all',
+    }
   },
-  mounted() {
-    ga('send', 'pageview');
+  beforeMount() {
+    if (this.$route.query.type) {
+      this.type = this.$route.query.type
+    }
   },
-};
+}
 </script>
 
 <style>

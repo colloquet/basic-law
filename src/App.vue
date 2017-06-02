@@ -1,35 +1,39 @@
 <template>
   <div>
 
-    <app-nav></app-nav>
+    <navbar></navbar>
 
     <div class="uk-container uk-container-center">
 
-      <transition name="fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
+      <router-view></router-view>
 
-      <app-footer></app-footer>
-
-      <app-offcanvas></app-offcanvas>
+      <div class="uk-text-center uk-margin-large-bottom site-footer">
+        <hr>
+        <p class="uk-text-muted">Made in Hong Kong by <a href="http://colloquet.github.io/" target="_blank">Colloque Tsui</a></p>
+        <div class="fb-like" data-href="https://basiclaw.hk/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+      </div>
 
     </div>
+
+    <drawer></drawer>
 
   </div>
 </template>
 
 <script>
-import AppNav from './components/AppNav';
-import AppFooter from './components/AppFooter';
-import AppOffcanvas from './components/AppOffcanvas';
+import Navbar from './components/Navbar'
+import Drawer from './components/Drawer'
 
 export default {
   components: {
-    AppNav,
-    AppFooter,
-    AppOffcanvas,
+    Navbar,
+    Drawer,
   },
-};
+  metaInfo: {
+    title: '香港CRE基本法測試',
+    titleTemplate: '%s | 香港CRE基本法測試',
+  },
+}
 </script>
 
 <style>
@@ -53,16 +57,6 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
   border-top: 1px dashed #ddd;
-}
-
-/*page transition*/
-.fade-enter-active, .fade-leave-active {
-  transition: all .2s ease;
-}
-
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-  transform: translateY(5px);
 }
 
 /*uikit override*/

@@ -10,20 +10,12 @@
 </template>
 
 <script>
-/* global ga */
 export default {
-  head: {
-    title: {
-      inner: '關於香港CRE基本法測試',
-    },
+  metaInfo: {
+    title: '關於香港CRE基本法測試',
     meta: [
-      { name: 'description', content: '一個介面簡潔，提供香港基本法全文和大量CRE測試練習試題的網站。', id: 'meta-description' },
+      { name: 'description', content: '一個介面簡潔，提供香港基本法全文和大量CRE測試練習試題的網站。' },
     ],
   },
-  computed: {
-    mounted() {
-      ga('send', 'pageview');
-    },
-  },
-};
+}
 </script>

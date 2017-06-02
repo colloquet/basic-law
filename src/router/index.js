@@ -1,24 +1,23 @@
 /* global UIkit */
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '../views/Home';
-import Practice from '../views/Practice';
-import Mock from '../views/Mock';
-import About from '../views/About';
-import NotFound from '../views/NotFound';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from '../views/Home'
+import Practice from '../views/Practice'
+import About from '../views/About'
+import NotFound from '../views/NotFound'
 
-Vue.use(Router);
+Vue.use(Router)
 
 const scrollBehavior = (to, from, savedPosition) => {
   if (savedPosition) {
-    return savedPosition;
+    return savedPosition
   } else if (to.hash) {
     return {
       selector: to.hash,
-    };
+    }
   }
-  return { x: 0, y: 0 };
-};
+  return { x: 0, y: 0 }
+}
 
 const router = new Router({
   mode: 'history',
@@ -39,12 +38,6 @@ const router = new Router({
       meta: { scrollToTop: true },
     },
     {
-      name: '基本法模擬考試',
-      path: '/mock',
-      component: Mock,
-      meta: { scrollToTop: true },
-    },
-    {
       name: '關於',
       path: '/about',
       component: About,
@@ -57,11 +50,15 @@ const router = new Router({
       meta: { scrollToTop: true },
     },
   ],
-});
+})
 
 router.beforeEach((route, redirect, next) => {
-  UIkit.offcanvas.hide(true);
-  next();
-});
+  UIkit.offcanvas.hide(true)
+  next()
+})
 
-export default router;
+router.afterEach(() => {
+  window.ga('send', 'pageview')
+})
+
+export default router

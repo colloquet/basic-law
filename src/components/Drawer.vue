@@ -1,19 +1,19 @@
 <template>
   <div id="offcanvas-nav" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
-      <app-nav-links class-name="uk-nav uk-nav-offcanvas"></app-nav-links>
+      <nav-links class-name="uk-nav uk-nav-offcanvas"></nav-links>
     </div>
   </div>
 </template>
 
 <script>
-import AppNavLinks from './AppNavLinks';
+import NavLinks from './NavLinks'
 
 export default {
   components: {
-    AppNavLinks,
+    NavLinks,
   },
-};
+}
 </script>
 
 <style>

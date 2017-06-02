@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import VueHead from 'vue-head';
-import router from './router';
-import App from './App';
+import Vue from 'vue'
+import Meta from 'vue-meta'
+import router from './router'
+import App from './App'
 
-Vue.use(VueHead);
+Vue.use(Meta)
 
 /* eslint-disable no-new */
 new Vue({
@@ -11,4 +11,4 @@ new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },
-});
+})

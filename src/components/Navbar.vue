@@ -2,30 +2,36 @@
   <div class="site-nav">
     <nav class="uk-navbar uk-navbar-attached">
       <div class="uk-container uk-container-center">
-        <router-link to="/" class="uk-navbar-brand uk-link-reset uk-hidden-small">Basiclaw.hk</router-link>
+
+        <router-link to="/" class="uk-navbar-brand uk-link-reset uk-hidden-small">BasicLaw.hk</router-link>
+
         <div class="uk-navbar-flip">
-          <app-nav-links class-name="uk-navbar-nav uk-hidden-small"></app-nav-links>
+          <nav-links class-name="uk-navbar-nav uk-hidden-small"></nav-links>
         </div>
+
         <a href="#offcanvas-nav" class="uk-navbar-toggle uk-link-reset uk-visible-small" data-uk-offcanvas="{mode: 'slide'}"></a>
+
         <a href="#offcanvas-table-of-content" class="uk-link-reset uk-float-right uk-link-reset uk-visible-small table-of-content-toggle" data-uk-offcanvas="{mode: 'slide'}" v-show="$route.path == '/'">
           目錄
         </a>
+
         <div class="uk-navbar-content uk-visible-small">
           {{ $route.name }}
         </div>
+        
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-import AppNavLinks from './AppNavLinks';
+import NavLinks from './NavLinks'
 
 export default {
   components: {
-    AppNavLinks,
+    NavLinks,
   },
-};
+}
 </script>
 
 <style>

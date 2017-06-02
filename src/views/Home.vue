@@ -141,10 +141,10 @@
         <ul>
           <li> ( 一 )  在香港特別行政區成立以前或以後在香港出生的中國公民;</li>
           <li> ( 二 )  在香港特別行政區成立以前或以後在香港通常居住連續七年以上的中國公民;</li>
-          <li> ( 三 )  第( 一) 、( 二) 兩項所列居民在香港以外所生的中國籍子女;</li>
+          <li> ( 三 )  第( 一 ) 、( 二 ) 兩項所列居民在香港以外所生的中國籍子女;</li>
           <li> ( 四 )  在香港特別行政區成立以前或以後持有效旅行證件進入香港、在香港通常居住連續七年以上並以香港為永久居住地的非中國籍的人；</li>
           <li> ( 五 )  在香港特別行政區成立以前或以後第( 四) 項所列居民在香港所生的未滿二十一周歲的子女；</li>
-          <li> ( 六 )  第( 一) 至( 五) 項所列居民以外在香港特別行政區成立以前只在香港有居留權的人。</li>
+          <li> ( 六 )  第( 一 ) 至( 五 ) 項所列居民以外在香港特別行政區成立以前只在香港有居留權的人。</li>
         </ul>
 
         <p>以上居民在香港特別行政區享有居留權和有資格依照香港特別行政區法律取得載明其居留權的永久性居民身份證。</p>
@@ -822,71 +822,34 @@
 
         <p>在香港原有法律下有效的文件、證件、契約和權利義務，在不抵觸本法的前提下繼續有效，受香港特別行政區的承認和保護。</p>
       </div>
+
       <div class="uk-width-medium-1-4 uk-hidden-small">
-        <ul class="uk-nav uk-nav-side" data-uk-scrollspy-nav="{closest:'li'}" data-uk-sticky="{top:55, media: 768}">
-          <li><a href="#chapter-1" data-uk-smooth-scroll="{offset: 55}">第一章: 總則</a></li>
-          <li><a href="#chapter-2" data-uk-smooth-scroll="{offset: 55}">第二章: 中央和香港特別行政區的關係</a></li>
-          <li><a href="#chapter-3" data-uk-smooth-scroll="{offset: 55}">第三章: 居民的基本權利和義務</a></li>
-          <li>
-            <a href="#chapter-4" data-uk-smooth-scroll="{offset: 55}">第四章: 政治體制</a>
-            <ul class="uk-nav-sub">
-              <li>
-                <ul>
-                  <li><a href="#chapter-4-section-1" data-uk-smooth-scroll="{offset: 55}">第一節-  行政長官</a></li>
-                  <li><a href="#chapter-4-section-2" data-uk-smooth-scroll="{offset: 55}">第二節-  行政機關</a></li>
-                  <li><a href="#chapter-4-section-3" data-uk-smooth-scroll="{offset: 55}">第三節-  立法機關</a></li>
-                  <li><a href="#chapter-4-section-4" data-uk-smooth-scroll="{offset: 55}">第四節-  司法機關</a></li>
-                  <li><a href="#chapter-4-section-5" data-uk-smooth-scroll="{offset: 55}">第五節-  區域組織</a></li>
-                  <li><a href="#chapter-4-section-6" data-uk-smooth-scroll="{offset: 55}">第六節-  公務人員</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#chapter-5" data-uk-smooth-scroll="{offset: 55}">第五章: 經濟</a>
-            <ul class="uk-nav-sub">
-              <li>
-                <ul>
-                  <li><a href="#chapter-5-section-1" data-uk-smooth-scroll="{offset: 55}">第一節-  財政、金融、貿易和工商業</a></li>
-                  <li><a href="#chapter-5-section-2" data-uk-smooth-scroll="{offset: 55}">第二節-  土地契約</a></li>
-                  <li><a href="#chapter-5-section-3" data-uk-smooth-scroll="{offset: 55}">第三節-  航運</a></li>
-                  <li><a href="#chapter-5-section-4" data-uk-smooth-scroll="{offset: 55}">第四節-  民用航空</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#chapter-6" data-uk-smooth-scroll="{offset: 55}">第六章: 教育、科學、文化、體育、宗教、勞工和社會服務</a></li>
-          <li><a href="#chapter-7" data-uk-smooth-scroll="{offset: 55}">第七章: 對外事務</a></li>
-          <li><a href="#chapter-8" data-uk-smooth-scroll="{offset: 55}">第八章: 本法的解釋和修改</a></li>
-          <li><a href="#chapter-9" data-uk-smooth-scroll="{offset: 55}">第九章: 附則</a></li>
-        </ul>
+        <div data-uk-sticky="{top:55, media: 768}">
+          <table-of-content position="side"></table-of-content>
+        </div>
       </div>
     </div>
 
-    <app-offcanvas-table-of-content></app-offcanvas-table-of-content>
+    <table-of-content-drawer></table-of-content-drawer>
   </div>
 </template>
 
 <script>
-/* global ga */
-import AppOffcanvasTableOfContent from '../components/AppOffcanvasTableOfContent';
+import TableOfContent from '../components/TableOfContent'
+import TableOfContentDrawer from '../components/TableOfContentDrawer'
 
 export default {
   components: {
-    AppOffcanvasTableOfContent,
+    TableOfContent,
+    TableOfContentDrawer,
   },
-  head: {
-    title: {
-      inner: '香港CRE基本法測試',
-    },
+  metaInfo: {
+    title: '香港CRE基本法測試',
     meta: [
-      { name: 'description', content: '提供香港基本法全文和大量CRE測試練習試題。', id: 'meta-description' },
+      { name: 'description', content: '提供香港基本法全文和大量CRE測試練習試題。' },
     ],
   },
-  mounted() {
-    ga('send', 'pageview');
-  },
-};
+}
 </script>
 
 <style scoped>
@@ -897,18 +860,5 @@ h4 a {
 h4[id^="article-"] {
   padding-top: 55px;
   margin-top: -45px;
-}
-
-.uk-nav-side>li>a, .uk-nav-side ul a {
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.uk-nav-side>li.uk-active>a {
-  background: #34495e;
-}
-
-.uk-nav-sub .uk-active > a {
-  text-decoration: underline;
 }
 </style>
