@@ -1,4 +1,4 @@
-# basic-law
+# basiclaw.hk
 
 > A Vue.js project
 

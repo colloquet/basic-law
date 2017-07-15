@@ -835,8 +835,8 @@
 </template>
 
 <script>
-import TableOfContent from '../components/TableOfContent'
-import TableOfContentDrawer from '../components/TableOfContentDrawer'
+import TableOfContent from '@/components/TableOfContent'
+import TableOfContentDrawer from '@/components/TableOfContentDrawer'
 
 export default {
   components: {

@@ -1,9 +1,9 @@
 <template>
   <ul class="uk-grid">
-    <li class="uk-width-1-1 uk-margin-large-bottom" v-for="(question, questionIndex) in shuffledQuestions">
+    <li class="uk-width-1-1 uk-margin-large-bottom" v-for="(question, questionIndex) in shuffledQuestions" :key="questionIndex">
       <div class="uk-panel">
         <h3 class="uk-panel-title">{{ questionIndex + 1 }}. {{ question.text }}</h3>
-        <div class="uk-margin-small-bottom" v-for="(answer, answerIndex) in shuffleArray(question.answers)">
+        <div class="uk-margin-small-bottom" v-for="(answer, answerIndex) in shuffleArray(question.answers)" :key="answerIndex">
           <label :for="`question-${questionIndex}-answer-${answerIndex}`">
             <input type="radio" :id="`question-${questionIndex}-answer-${answerIndex}`" :name="`question-${questionIndex}`" :data-correct="answer.correct? 'true' : 'false'">
             <span>{{ answer.text }}</span>

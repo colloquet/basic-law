@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Quiz from '../components/Quiz'
+import Quiz from '@/components/Quiz'
 
 export default {
   components: {

@@ -1,10 +1,11 @@
 /* global UIkit */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home'
-import Practice from '../views/Practice'
-import About from '../views/About'
-import NotFound from '../views/NotFound'
+
+const Home = () => import('@/views/Home')
+const Practice = () => import('@/views/Practice')
+const About = () => import('@/views/About')
+const NotFound = () => import('@/views/NotFound')
 
 Vue.use(Router)
 
