@@ -762,11 +762,11 @@ const questions = [
       },
       {
         text: '60',
-        correct: true,
+        correct: false,
       },
       {
         text: '70',
-        correct: false,
+        correct: true,
       },
     ],
   },

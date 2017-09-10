@@ -8,12 +8,12 @@
       <ul class="uk-nav-sub">
         <li>
           <ul>
-            <li><a href="#chapter-4-section-1" data-uk-smooth-scroll="{offset: 55}">第一節-  行政長官</a></li>
-            <li><a href="#chapter-4-section-2" data-uk-smooth-scroll="{offset: 55}">第二節-  行政機關</a></li>
-            <li><a href="#chapter-4-section-3" data-uk-smooth-scroll="{offset: 55}">第三節-  立法機關</a></li>
-            <li><a href="#chapter-4-section-4" data-uk-smooth-scroll="{offset: 55}">第四節-  司法機關</a></li>
-            <li><a href="#chapter-4-section-5" data-uk-smooth-scroll="{offset: 55}">第五節-  區域組織</a></li>
-            <li><a href="#chapter-4-section-6" data-uk-smooth-scroll="{offset: 55}">第六節-  公務人員</a></li>
+            <li><a href="#chapter-4-section-1" data-uk-smooth-scroll="{offset: 55}">第一節 - 行政長官</a></li>
+            <li><a href="#chapter-4-section-2" data-uk-smooth-scroll="{offset: 55}">第二節 - 行政機關</a></li>
+            <li><a href="#chapter-4-section-3" data-uk-smooth-scroll="{offset: 55}">第三節 - 立法機關</a></li>
+            <li><a href="#chapter-4-section-4" data-uk-smooth-scroll="{offset: 55}">第四節 - 司法機關</a></li>
+            <li><a href="#chapter-4-section-5" data-uk-smooth-scroll="{offset: 55}">第五節 - 區域組織</a></li>
+            <li><a href="#chapter-4-section-6" data-uk-smooth-scroll="{offset: 55}">第六節 - 公務人員</a></li>
           </ul>
         </li>
       </ul>
@@ -23,10 +23,10 @@
       <ul class="uk-nav-sub">
         <li>
           <ul>
-            <li><a href="#chapter-5-section-1" data-uk-smooth-scroll="{offset: 55}">第一節-  財政、金融、貿易和工商業</a></li>
-            <li><a href="#chapter-5-section-2" data-uk-smooth-scroll="{offset: 55}">第二節-  土地契約</a></li>
-            <li><a href="#chapter-5-section-3" data-uk-smooth-scroll="{offset: 55}">第三節-  航運</a></li>
-            <li><a href="#chapter-5-section-4" data-uk-smooth-scroll="{offset: 55}">第四節-  民用航空</a></li>
+            <li><a href="#chapter-5-section-1" data-uk-smooth-scroll="{offset: 55}">第一節 - 財政、金融、貿易和工商業</a></li>
+            <li><a href="#chapter-5-section-2" data-uk-smooth-scroll="{offset: 55}">第二節 - 土地契約</a></li>
+            <li><a href="#chapter-5-section-3" data-uk-smooth-scroll="{offset: 55}">第三節 - 航運</a></li>
+            <li><a href="#chapter-5-section-4" data-uk-smooth-scroll="{offset: 55}">第四節 - 民用航空</a></li>
           </ul>
         </li>
       </ul>
