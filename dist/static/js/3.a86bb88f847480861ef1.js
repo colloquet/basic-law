@@ -1,0 +1,2 @@
+webpackJsonp([3],{30:function(t,n,e){var r=e(0)(null,e(49),null,null);t.exports=r.exports},49:function(t,n){t.exports={render:function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("div",{staticClass:"about"},[e("h1",[t._v("404頁面不存在")]),t._v(" "),e("hr"),t._v(" "),e("router-link",{attrs:{to:"/"}},[t._v("回到主頁")])],1)},staticRenderFns:[]}}});
+//# sourceMappingURL=3.a86bb88f847480861ef1.js.map
