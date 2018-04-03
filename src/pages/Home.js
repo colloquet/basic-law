@@ -58,8 +58,8 @@ const MenuButton = styled.button`
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  height: 4rem;
-  width: 4rem;
+  height: 3.5rem;
+  width: 3.5rem;
   border-radius: 50%;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -77,8 +77,15 @@ const MenuButton = styled.button`
 
 class Home extends React.PureComponent {
   state = {
-    showSidebar: window.innerWidth >= 768,
-    isMobile: window.innerWidth < 768,
+    showSidebar: true,
+    isMobile: false,
+  }
+
+  componentWillMount() {
+    this.setState({
+      showSidebar: window.innerWidth >= 768,
+      isMobile: window.innerWidth < 768,
+    })
   }
 
   componentDidMount() {
