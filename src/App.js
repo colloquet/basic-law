@@ -6,6 +6,7 @@ import Route from 'react-router-dom/Route'
 
 import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
+import BottomBar from './components/BottomBar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Practice from './pages/Practice'
@@ -16,6 +17,10 @@ const Container = styled.div`
   max-width: 1200px;
   padding: 1.5rem 1rem;
   margin-top: 3rem;
+
+  @media (max-width: 767px) {
+    padding-bottom: calc(1.5rem + 3.5rem);
+  }
 `
 
 function App({ children }) {
@@ -34,6 +39,8 @@ function App({ children }) {
             <hr />
             <Footer />
           </Container>
+
+          <BottomBar />
         </div>
       </ScrollToTop>
     </Router>

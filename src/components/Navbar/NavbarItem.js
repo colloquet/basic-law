@@ -15,10 +15,6 @@ const Inner = styled.div`
   &:hover {
     background: #ea6153;
   }
-
-  @media (max-width: 767px) {
-    padding: 0 0.5rem;
-  }
 `
 
 function NavbarItem({ children, logo, ...props }) {

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import RemoveIcon from 'react-feather/dist/icons/x'
 import MenuIcon from 'react-feather/dist/icons/menu'
 
+import withResponsive from '../components/withResponsive'
 import PageTitle from '../components/PageTitle'
 import Sidebar from '../components/Sidebar'
 
@@ -39,13 +40,14 @@ const SidebarContainer = GridItem.extend`
   @media (max-width: 767px) {
     position: fixed;
     padding: 1rem;
-    top: 3rem;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: #fff;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    z-index: 2;
   }
 
   [data-list] {
@@ -56,7 +58,9 @@ const SidebarContainer = GridItem.extend`
 
 const MenuButton = styled.button`
   position: fixed;
-  bottom: 1rem;
+  bottom: 4.5rem;
+  bottom: calc(4.5rem + constant(safe-area-inset-bottom));
+  bottom: calc(4.5rem + env(safe-area-inset-bottom));
   right: 1rem;
   height: 3.5rem;
   width: 3.5rem;
@@ -72,35 +76,18 @@ const MenuButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 3;
 `
 
 class Home extends React.PureComponent {
   state = {
-    showSidebar: true,
-    isMobile: false,
+    showSidebar: !this.props.isMobile,
   }
 
-  componentWillMount() {
-    this.setState({
-      showSidebar: window.innerWidth >= 768,
-      isMobile: window.innerWidth < 768,
-    })
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.onResize)
-    this.onResize()
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize)
-  }
-
-  onResize = () => {
-    const isMobile = window.innerWidth < 768
-    const showSidebar = isMobile ? this.state.showSidebar : true
-    this.setState({ isMobile, showSidebar })
+  componentDidUpdate({ isMobile }) {
+    if (isMobile !== this.props.isMobile) {
+      this.setState({ showSidebar: this.props.isMobile ? this.state.showSidebar : true })
+    }
   }
 
   onMenuClick = () => {
@@ -108,13 +95,15 @@ class Home extends React.PureComponent {
   }
 
   onSidebarClick = () => {
-    if (this.state.isMobile) {
+    if (this.props.isMobile) {
       this.setState({ showSidebar: false })
     }
   }
 
   render() {
-    const { showSidebar, isMobile } = this.state
+    const { showSidebar } = this.state
+    const { isMobile } = this.props
+
     return (
       <div>
         <Helmet title="香港CRE基本法測試" titleTemplate="%s | 香港CRE基本法測試" />
@@ -867,6 +856,7 @@ class Home extends React.PureComponent {
           </ArticleContainer>
 
           <SidebarContainer visible={showSidebar}>
+            {isMobile && <PageTitle style={{ padding: '0.4rem .8rem', marginBottom: '0.5rem' }}>目錄</PageTitle>}
             <Sidebar onClick={this.onSidebarClick} />
           </SidebarContainer>
         </Grid>
@@ -881,4 +871,4 @@ class Home extends React.PureComponent {
   }
 }
 
-export default Home
+export default withResponsive(Home)
