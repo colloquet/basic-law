@@ -3,10 +3,11 @@ import Route from 'react-router-dom/Route'
 import NavLink from 'react-router-dom/NavLink'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import PageTitle from '../components/PageTitle'
 import QuestionList from '../components/QuestionList'
-import questions from '../questions'
+
 
 const ButtonGroup = styled.div`
   width: 100%;
@@ -48,10 +49,14 @@ function Practice({ match }) {
         </Button>
       </ButtonGroup>
 
-      <Route exact path={match.url} render={() => <QuestionList list={questions} />} />
-      <Route path={`${match.url}/random`} render={() => <QuestionList size={15} list={questions} />} />
+      <Route exact path={match.url} render={() => <QuestionList />} />
+      <Route path={`${match.url}/random`} render={() => <QuestionList size={15} />} />
     </div>
   )
+}
+
+Practice.propTypes = {
+  match: PropTypes.object.isRequired,
 }
 
 export default Practice

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Stickyfill from 'stickyfilljs'
+import PropTypes from 'prop-types'
 
 const nodeListToArray = nodeList => {
   const array = []
@@ -97,6 +98,10 @@ const chapterList = [
 ]
 
 class Sidebar extends React.PureComponent {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     const chapters = document.querySelectorAll('[id^="chapter-"]')
     this.chapters = nodeListToArray(chapters).reduce(
@@ -138,6 +143,7 @@ class Sidebar extends React.PureComponent {
 
   render() {
     const { onClick } = this.props
+
     return (
       <Container innerRef={ref => (this.container = ref)} data-list>
         <List>

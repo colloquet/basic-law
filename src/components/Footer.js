@@ -12,12 +12,12 @@ function Footer() {
   return (
     <Container>
       <p>
-        Made in Hong Kong by{' '}
+        <span title="Coded">&lt;/&gt;</span> in <span title="Hong Kong" role="img" aria-label="Hong Kong">🇭🇰</span> by{' '}
         <a href="https://colloque.io/" target="_blank" rel="noopener noreferrer">
           Colloque Tsui
         </a>
         <br />
-        Source code available at{' '}
+        Source code available on{' '}
         <a href="https://github.com/colloquet/basic-law" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
