@@ -3,6 +3,8 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import RemoveIcon from 'react-feather/dist/icons/x'
 import MenuIcon from 'react-feather/dist/icons/menu'
+import SmoothScroll from 'smooth-scroll'
+import PropTypes from 'prop-types'
 
 import withResponsive from '../components/withResponsive'
 import PageTitle from '../components/PageTitle'
@@ -39,6 +41,7 @@ const SidebarContainer = GridItem.extend`
 
   @media (max-width: 767px) {
     position: fixed;
+    border-left: 0;
     padding: 1rem;
     top: 0;
     left: 0;
@@ -80,14 +83,30 @@ const MenuButton = styled.button`
 `
 
 class Home extends React.PureComponent {
+  static propTypes = {
+    isMobile: PropTypes.bool.isRequired,
+  }
+
   state = {
     showSidebar: !this.props.isMobile,
+  }
+
+  componentDidMount() {
+    this.smoothScroll = new SmoothScroll('a[href*="#"]')
+    this.smoothScroll.init({
+      speed: 400,
+      offset: 0
+    })
   }
 
   componentDidUpdate({ isMobile }) {
     if (isMobile !== this.props.isMobile) {
       this.setState({ showSidebar: this.props.isMobile ? this.state.showSidebar : true })
     }
+  }
+
+  componentWillUnmount() {
+    this.smoothScroll.destroy()
   }
 
   onMenuClick = () => {

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import CheckIcon from 'react-feather/dist/icons/check'
 import RemoveIcon from 'react-feather/dist/icons/x'
 import shuffle from 'lodash/shuffle'
@@ -49,23 +50,29 @@ const Label = styled.label`
 `
 
 class AnswerList extends React.PureComponent {
+  static propTypes = {
+    qIndex: PropTypes.number.isRequired,
+    list: PropTypes.array.isRequired,
+  }
+
   state = {
     answers: [],
   }
 
-  componentWillMount() {
-    this.setState({ answers: shuffle(this.props.list) })
+  static getDerivedStateFromProps({ list }) {
+    return { answers: shuffle(list) }
   }
 
   render() {
     const { answers } = this.state
     const { qIndex } = this.props
+
     return (
       <List>
         {answers.map((answer, aIndex) => {
           const id = `question-${qIndex}-answer-${aIndex}`
           return (
-            <Answer key={answer.text}>
+            <Answer key={id}>
               <Radio type="radio" id={id} name={`question-${qIndex}`} data-correct={answer.correct} />
               <Label htmlFor={id}>{answer.text}</Label>
               {answer.correct ? <CheckIcon size={16} /> : <RemoveIcon size={16} />}

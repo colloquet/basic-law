@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import shuffle from 'lodash/shuffle'
 import take from 'lodash/take'
 
 import AnswerList from './AnswerList'
+import questions from '../questions'
 
 const Question = styled.div`
   & + & {
@@ -16,19 +18,21 @@ const QuestionLabel = styled.h3`
 `
 
 class QuestionList extends React.PureComponent {
+  static propTypes = {
+    size: PropTypes.number,
+  }
+
   state = {
     questions: [],
   }
 
-  componentWillMount() {
-    const { list, size } = this.props
-    this.setState({ questions: take(shuffle(list), size || list.length) })
+  static getDerivedStateFromProps({ size }) {
+    return { questions: take(shuffle(questions), size || questions.length) }
   }
 
   render() {
-    const { questions } = this.state
-    return questions.map((question, qIndex) => (
-      <Question key={question.text}>
+    return this.state.questions.map((question, qIndex) => (
+      <Question key={qIndex}>
         <QuestionLabel>
           {qIndex + 1}. {question.text}
         </QuestionLabel>

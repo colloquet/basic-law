@@ -23,7 +23,7 @@ const Container = styled.div`
   }
 `
 
-function App({ children }) {
+function App() {
   return (
     <Router>
       <ScrollToTop>

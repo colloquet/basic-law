@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Container = styled.div`
   position: fixed;
@@ -9,6 +10,12 @@ const Container = styled.div`
 `
 
 class TopAppBar extends React.PureComponent {
+  static propTypes = {
+    zIndex: PropTypes.number.isRequired,
+    maxHeight: PropTypes.number.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  }
+
   static defaultProps = {
     zIndex: 1,
     maxHeight: 64,

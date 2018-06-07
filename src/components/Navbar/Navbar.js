@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import withResponsive from '../withResponsive'
 import TopAppBar from '../TopAppBar'
@@ -47,6 +48,10 @@ function Navbar({ isMobile }) {
       </Wrapper>
     </TopAppBar>
   )
+}
+
+Navbar.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
 }
 
 export default withResponsive(Navbar)

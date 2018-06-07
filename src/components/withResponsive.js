@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { ResponsiveConsumer } from '../ResponsiveContext'
 
 function withResponsive(Component) {
-  return function ThemedComponent(props) {
+  return function ResponsiveComponent(props) {
     return (
       <ResponsiveConsumer>
         {context => (
@@ -15,6 +16,10 @@ function withResponsive(Component) {
       </ResponsiveConsumer>
     )
   }
+}
+
+withResponsive.propTypes = {
+  Component: PropTypes.node.isRequired,
 }
 
 export default withResponsive
