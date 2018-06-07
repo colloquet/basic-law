@@ -1,11 +1,22 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
 import PageTitle from '../components/PageTitle'
 
+const Container = styled.div`
+  text-align: justify;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+`
+
 function About() {
   return (
-    <div>
+    <Container>
       <Helmet title="關於香港CRE基本法測試" titleTemplate="%s | 香港CRE基本法測試" />
       <PageTitle>關於香港CRE基本法測試</PageTitle>
       <hr />
@@ -19,7 +30,7 @@ function About() {
       <p>
         如有任何意見請 <a href="mailTo:colloquet@icloud.com">email</a> 我。
       </p>
-    </div>
+    </Container>
   )
 }
 

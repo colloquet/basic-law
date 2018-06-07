@@ -22,10 +22,19 @@ const List = styled.ul`
   padding-left: 1rem;
 `
 
-const ChapterTitle = styled.h2``
+const ChapterTitle = styled.h3`
+  font-weight: bold;
+`
 
 const ArticleContainer = GridItem.extend`
   flex: 3;
+  text-align: justify;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 `
 
 const SidebarContainer = GridItem.extend`
@@ -36,6 +45,13 @@ const SidebarContainer = GridItem.extend`
   will-change: opacity;
   pointer-events: ${props => (props.visible ? 'auto' : 'none')};
   z-index: 1;
+  text-align: justify;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   @media (max-width: 767px) {
     position: fixed;

@@ -6,12 +6,20 @@ import take from 'lodash/take'
 import AnswerList from './AnswerList'
 
 const Question = styled.div`
+  text-align: justify;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
   & + & {
     margin-top: 2rem;
   }
 `
 
-const QuestionLabel = styled.h3`
+const QuestionLabel = styled.p`
   margin: 0 0 0.5rem;
 `
 

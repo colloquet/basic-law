@@ -3,7 +3,7 @@ import React from 'react'
 import { ResponsiveConsumer } from '../ResponsiveContext'
 
 function withResponsive(Component) {
-  return function ThemedComponent(props) {
+  return function WrappedComponent(props) {
     return (
       <ResponsiveConsumer>
         {context => (

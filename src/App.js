@@ -7,10 +7,11 @@ import Route from 'react-router-dom/Route'
 import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
 import BottomBar from './components/BottomBar'
+import Footer from './components/Footer'
+
 import Home from './pages/Home'
 import About from './pages/About'
 import Practice from './pages/Practice'
-import Footer from './components/Footer'
 
 const Container = styled.div`
   margin: 0 auto;
