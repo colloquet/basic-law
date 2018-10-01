@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import shuffle from 'lodash/shuffle'
-import take from 'lodash/take'
 
+import { shuffle } from '../utils'
 import AnswerList from './AnswerList'
 import questions from '../questions'
 
@@ -23,6 +22,7 @@ const Question = styled.div`
 
 const QuestionLabel = styled.p`
   margin: 0 0 0.5rem;
+  font-weight: bold;
 `
 
 class QuestionList extends React.PureComponent {
@@ -30,12 +30,16 @@ class QuestionList extends React.PureComponent {
     size: PropTypes.number,
   }
 
+  static defaultProps = {
+    size: null,
+  }
+
   state = {
     questions: [],
   }
 
   static getDerivedStateFromProps({ size }) {
-    return { questions: take(shuffle(questions), size || questions.length) }
+    return { questions: shuffle(questions).slice(0, size || questions.length) }
   }
 
   render() {

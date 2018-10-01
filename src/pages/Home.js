@@ -55,6 +55,10 @@ const SidebarContainer = GridItem.extend`
   word-wrap: break-word;
   overflow-wrap: break-word;
 
+  .is-dark & {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
   @media (max-width: 767px) {
     position: fixed;
     border-left: 0;
@@ -67,6 +71,9 @@ const SidebarContainer = GridItem.extend`
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     z-index: 2;
+
+    .is-dark & {
+      background: #131313;
   }
 
   [data-list] {
@@ -96,6 +103,10 @@ const MenuButton = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 3;
+
+  .is-dark & {
+    background: #282828;
+  }
 `
 
 class Home extends React.PureComponent {
@@ -125,11 +136,11 @@ class Home extends React.PureComponent {
     this.smoothScroll.destroy()
   }
 
-  onMenuClick = () => {
+  handleMenuClick = () => {
     this.setState({ showSidebar: !this.state.showSidebar })
   }
 
-  onSidebarClick = () => {
+  handleSidebarClick = () => {
     if (this.props.isMobile) {
       this.setState({ showSidebar: false })
     }
@@ -892,12 +903,12 @@ class Home extends React.PureComponent {
 
           <SidebarContainer visible={showSidebar}>
             {isMobile && <PageTitle style={{ padding: '0.4rem .8rem', marginBottom: '0.5rem' }}>目錄</PageTitle>}
-            <Sidebar onClick={this.onSidebarClick} />
+            <Sidebar onClick={this.handleSidebarClick} />
           </SidebarContainer>
         </Grid>
 
         {isMobile && (
-          <MenuButton role="button" aria-label="目錄" onClick={this.onMenuClick}>
+          <MenuButton role="button" aria-label="目錄" onClick={this.handleMenuClick}>
             {showSidebar ? <RemoveIcon /> : <MenuIcon />}
           </MenuButton>
         )}

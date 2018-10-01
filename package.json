@@ -10,7 +10,7 @@
     "react-feather": "^1.1.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "1.1.5",
     "smooth-scroll": "^14.2.0",
     "stickyfilljs": "^2.0.5",
     "styled-components": "^3.3.2"

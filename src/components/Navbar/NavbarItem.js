@@ -12,17 +12,23 @@ const Inner = styled.div`
   line-height: 3rem;
   white-space: nowrap;
 
+  .is-dark & {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .active &,
   &:hover {
     background: #ea6153;
+
+    .is-dark & {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
 `
 
 function NavbarItem({ children, logo, ...props }) {
-  const activeStyle = {
-    background: logo ? 'transparent' : '#ea6153',
-  }
   return (
-    <NavLink {...props} activeStyle={activeStyle}>
+    <NavLink {...props} activeClassName={logo ? null : 'active'}>
       <Inner>{children}</Inner>
     </NavLink>
   )

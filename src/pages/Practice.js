@@ -10,15 +10,19 @@ import QuestionList from '../components/QuestionList'
 
 
 const ButtonGroup = styled.div`
-  width: 100%;
+  background: #f5f6f7;
   border-radius: 8px;
+  width: 100%;
   overflow: hidden;
   margin-bottom: 1rem;
+
+  .is-dark & {
+    background: #282828;
+  }
 `
 
 const Button = styled(NavLink)`
   display: inline-block;
-  background: #f5f6f7;
   width: 50%;
   height: 2rem;
   line-height: 2rem;
@@ -27,9 +31,14 @@ const Button = styled(NavLink)`
   text-align: center;
   color: inherit;
 
+  &.active,
   &:hover {
-    background: #eee;
+    background: #e6e6e6;
     color: inherit;
+
+    .is-dark & {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
 `
 
@@ -41,10 +50,10 @@ function Practice({ match }) {
       <hr />
 
       <ButtonGroup>
-        <Button exact to={match.url} activeStyle={{ background: '#e6e6e6' }}>
+        <Button exact to={match.url} activeClassName="active">
           全部問題
         </Button>
-        <Button to={`${match.url}/random`} activeStyle={{ background: '#e6e6e6' }}>
+        <Button to={`${match.url}/random`} activeClassName="active">
           隨機15條
         </Button>
       </ButtonGroup>

@@ -3,6 +3,12 @@ html {
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.78);
   line-height: 1.5;
+  transition: background 0.5s, color 0.5s;
+  will-change: background, color;
+}
+html.is-dark {
+  background: #131313;
+  color: rgba(255, 255, 255, 0.68);
 }
 
 *,
@@ -38,4 +44,8 @@ a:hover {
 [id^="chapter-"] {
   padding-top: 4rem;
   margin-top: -4rem;
+}
+
+.is-dark hr {
+  border-color: rgba(255, 255, 255, 0.08);
 }

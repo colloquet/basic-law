@@ -39,7 +39,7 @@ const ListItem = styled.li`
 
   > a {
     display: block;
-    border-radius: 8px;
+    border-radius: 16px;
     padding: 0.4rem 1rem;
     text-decoration: none;
     color: inherit;
@@ -48,6 +48,10 @@ const ListItem = styled.li`
     &.is-active {
       background: #f5f6f7;
       color: inherit;
+
+      .is-dark & {
+        background: rgba(255, 255, 255, 0.1);
+      }
     }
   }
 `
@@ -111,17 +115,17 @@ class Sidebar extends React.PureComponent {
       }),
       {},
     )
-    window.addEventListener('scroll', this.onScroll)
-    this.onScroll()
+    window.addEventListener('scroll', this.scrollHandler)
+    this.scrollHandler()
     Stickyfill.addOne(this.container)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('scroll', this.scrollHandler)
     Stickyfill.removeOne(this.container)
   }
 
-  onScroll = () => {
+  scrollHandler = () => {
     const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop
     const ids = Object.keys(this.chapters)
 

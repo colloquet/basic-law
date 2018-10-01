@@ -16,6 +16,12 @@ const Container = styled.div`
   padding-bottom: env(safe-area-inset-bottom);
   width: 100%;
   z-index: 3;
+  transition: background 0.5s;
+  will-change: background;
+
+  .is-dark & {
+    background: #000;
+  }
 
   @media (min-width: 768px) {
     display: none;
@@ -34,6 +40,10 @@ const NavItem = styled(NavLink)`
   font-size: 0.75rem;
   color: inherit;
 
+  .is-dark & {
+    color: #888;
+  }
+
   &:hover,
   &:active {
     color: inherit;
@@ -45,6 +55,10 @@ const NavItem = styled(NavLink)`
 
   &.active {
     color: #e74c3c;
+
+    .is-dark & {
+      color: rgba(255, 255, 255, 0.78);
+    }
   }
 `
 

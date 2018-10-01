@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import CheckIcon from 'react-feather/dist/icons/check'
 import RemoveIcon from 'react-feather/dist/icons/x'
-import shuffle from 'lodash/shuffle'
+import { shuffle } from '../utils'
 
 const List = styled.ul`
   list-style: none;
@@ -14,9 +14,14 @@ const List = styled.ul`
 const Answer = styled.li`
   display: flex;
   align-items: center;
+
+  &:nth-child(n + 2) {
+    padding-top: 0.5rem;
+  }
 `
 
 const Radio = styled.input`
+  flex-shrink: 0;
   cursor: pointer;
 
   ~ svg {
