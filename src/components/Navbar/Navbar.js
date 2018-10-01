@@ -1,8 +1,11 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import SunIcon from 'react-feather/dist/icons/sun'
 import MoonIcon from 'react-feather/dist/icons/moon'
+
+import store from '../../storage'
 
 import withResponsive from '../withResponsive'
 import TopAppBar from '../TopAppBar'
@@ -49,35 +52,56 @@ const NightModeToggle = styled.button`
   }
 `
 
-function Navbar({ isMobile, darkMode, onToggleDarkMode }) {
-  return (
-    <TopAppBar zIndex={2} disabled={!isMobile}>
-      <Wrapper>
-        <Container>
-          <NavbarItem to="/" logo>
-            BasicLaw.hk
-          </NavbarItem>
+class Navbar extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      darkMode: store.get('darkMode') || false,
+    }
+  }
 
-          <NightModeToggle onClick={onToggleDarkMode} title={darkMode ? '開燈' : '熄燈'}>
-            {darkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-          </NightModeToggle>
-          <NavbarRight>
-            <NavbarItem to="/" exact>
-              基本法全文
+  toggleDarkMode = () => {
+    this.setState(({ darkMode}) => ({
+      darkMode: !darkMode,
+    }), () => {
+      store.set('darkMode', this.state.darkMode)
+    })
+  }
+
+  render() {
+    const { darkMode } = this.state
+    const { isMobile } = this.props
+
+    return (
+      <TopAppBar zIndex={2} disabled={!isMobile}>
+        <Helmet>
+          <html className={darkMode ? 'is-dark' : ''} />
+        </Helmet>
+        <Wrapper>
+          <Container>
+            <NavbarItem to="/" logo>
+              BasicLaw.hk
             </NavbarItem>
-            <NavbarItem to="/practice">CRE基本法測試練習試題</NavbarItem>
-            <NavbarItem to="/about">關於</NavbarItem>
-          </NavbarRight>
-        </Container>
-      </Wrapper>
-    </TopAppBar>
-  )
+
+            <NightModeToggle onClick={this.toggleDarkMode} title={darkMode ? '開燈' : '熄燈'}>
+              {darkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+            </NightModeToggle>
+            <NavbarRight>
+              <NavbarItem to="/" exact>
+                基本法全文
+              </NavbarItem>
+              <NavbarItem to="/practice">CRE基本法測試練習試題</NavbarItem>
+              <NavbarItem to="/about">關於</NavbarItem>
+            </NavbarRight>
+          </Container>
+        </Wrapper>
+      </TopAppBar>
+    )
+  }
 }
 
 Navbar.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  darkMode: PropTypes.bool.isRequired,
-  onToggleDarkMode: PropTypes.func.isRequired,
 }
 
 export default withResponsive(Navbar)

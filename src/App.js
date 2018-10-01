@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import Router from 'react-router-dom/BrowserRouter'
 import Route from 'react-router-dom/Route'
 
-import store from './storage'
-
 import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
 import BottomBar from './components/BottomBar'
@@ -26,49 +24,28 @@ const Container = styled.div`
   }
 `
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      darkMode: store.get('darkMode') || false,
-    }
-  }
+function App() {
+  return (
+    <Router>
+      <ScrollToTop>
+        <div>
+          <Helmet title="香港CRE基本法測試" titleTemplate="%s | 香港CRE基本法測試" />
+          <Navbar />
 
-  toggleDarkMode = () => {
-    this.setState(({ darkMode}) => ({
-      darkMode: !darkMode,
-    }), () => {
-      store.set('darkMode', this.state.darkMode)
-    })
-  }
+          <Container>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/practice" component={Practice} />
 
-  render() {
-    const { darkMode } = this.state
+            <hr />
+            <Footer />
+          </Container>
 
-    return (
-      <Router>
-        <ScrollToTop>
-          <div>
-            <Helmet title="香港CRE基本法測試" titleTemplate="%s | 香港CRE基本法測試">
-              <html className={darkMode ? 'is-dark' : ''} />
-            </Helmet>
-            <Navbar darkMode={darkMode} onToggleDarkMode={this.toggleDarkMode} />
-
-            <Container>
-              <Route exact path="/" component={Home} />
-              <Route path="/about" component={About} />
-              <Route path="/practice" component={Practice} />
-
-              <hr />
-              <Footer />
-            </Container>
-
-            <BottomBar />
-          </div>
-        </ScrollToTop>
-      </Router>
-    )
-  }
+          <BottomBar />
+        </div>
+      </ScrollToTop>
+    </Router>
+  )
 }
 
 export default App
