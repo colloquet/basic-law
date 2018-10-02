@@ -1,115 +1,16 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
 import RemoveIcon from 'react-feather/dist/icons/x'
 import MenuIcon from 'react-feather/dist/icons/menu'
 import SmoothScroll from 'smooth-scroll'
 import PropTypes from 'prop-types'
 
-import withResponsive from '../components/withResponsive'
-import PageTitle from '../components/PageTitle'
-import Sidebar from '../components/Sidebar'
+import withResponsive from '../../components/withResponsive'
+import PageTitle from '../../components/PageTitle/PageTitle'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import styles from './HomePage.module.scss'
 
-const Grid = styled.div`
-  display: flex;
-  margin: 0 -1rem;
-`
-
-const GridItem = styled.div`
-  padding: 0 1rem;
-`
-
-const List = styled.ul`
-  list-style: none;
-  padding-left: 1rem;
-`
-
-const ChapterTitle = styled.h3`
-  font-weight: bold;
-`
-
-const ArticleContainer = GridItem.extend`
-  flex: 3;
-  text-align: justify;
-  line-height: 24px;
-  letter-spacing: 1px;
-  font-size: 18px;
-  word-break: break-word;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-`
-
-const SidebarContainer = GridItem.extend`
-  flex: 1;
-  border-left: 1px dashed #ddd;
-  opacity: ${props => (props.visible ? 1 : 0)};
-  transition: opacity 300ms ease;
-  will-change: opacity;
-  pointer-events: ${props => (props.visible ? 'auto' : 'none')};
-  z-index: 1;
-  text-align: justify;
-  line-height: 24px;
-  letter-spacing: 1px;
-  font-size: 18px;
-  word-break: break-word;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-
-  .is-dark & {
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  @media (max-width: 767px) {
-    position: fixed;
-    border-left: 0;
-    padding: 1rem;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #fff;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    z-index: 2;
-
-    .is-dark & {
-      background: #131313;
-  }
-
-  [data-list] {
-    transform: translate3d(0, ${props => (props.visible ? 0 : '40px')}, 0);
-    transition: transform 300ms ease;
-  }
-`
-
-const MenuButton = styled.button`
-  position: fixed;
-  bottom: 4.5rem;
-  bottom: calc(4.5rem + constant(safe-area-inset-bottom));
-  bottom: calc(4.5rem + env(safe-area-inset-bottom));
-  right: 1rem;
-  height: 3.5rem;
-  width: 3.5rem;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  outline: 0;
-  background: #34495e;
-  color: #fff;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-
-  .is-dark & {
-    background: #282828;
-  }
-`
-
-class Home extends React.PureComponent {
+class HomePage extends React.PureComponent {
   static propTypes = {
     isMobile: PropTypes.bool.isRequired,
   }
@@ -122,7 +23,7 @@ class Home extends React.PureComponent {
     this.smoothScroll = new SmoothScroll('a[href*="#"]')
     this.smoothScroll.init({
       speed: 400,
-      offset: 0
+      offset: 0,
     })
   }
 
@@ -156,9 +57,11 @@ class Home extends React.PureComponent {
         <PageTitle>香港CRE基本法全文</PageTitle>
         <hr />
 
-        <Grid>
-          <ArticleContainer>
-            <ChapterTitle id="chapter-1">第一章: 總則</ChapterTitle>
+        <div className={styles.grid}>
+          <div className={styles.articleContainer}>
+            <h3 className={styles.chapterTitle} id="chapter-1">
+              第一章: 總則
+            </h3>
             <strong>第一條</strong>
             <p>香港特別行政區是中華人民共和國不可分離的部分。</p>
             <strong>第二條</strong>
@@ -193,7 +96,9 @@ class Home extends React.PureComponent {
             </p>
             <p>香港特別行政區立法機關制定的任何法律，均不得同本法相抵觸。</p>
             <hr />
-            <ChapterTitle id="chapter-2">第二章: 中央和香港特別行政區的關係</ChapterTitle>
+            <h3 className={styles.chapterTitle} id="chapter-2">
+              第二章: 中央和香港特別行政區的關係
+            </h3>
             <strong>第十二條</strong>
             <p>香港特別行政區是中華人民共和國的一個享有高度自治權的地方行政區域，直轄於中央人民政府。</p>
             <strong>第十三條</strong>
@@ -259,11 +164,13 @@ class Home extends React.PureComponent {
               香港特別行政區應自行立法禁止任何叛國、分裂國家、煽動叛亂、顛覆中央人民政府及竊取國家機密的行為，禁止外國的政治性組織或團體在香港特別行政區進行政治活動，禁止香港特別行政區的政治性組織或團體與外國的政治性組織或團體建立聯繫。
             </p>
             <hr />
-            <ChapterTitle id="chapter-3">第三章: 居民的基本權利和義務</ChapterTitle>
+            <h3 className={styles.chapterTitle} id="chapter-3">
+              第三章: 居民的基本權利和義務
+            </h3>
             <strong>第二十四條</strong>
             <p>香港特別行政區居民，簡稱香港居民，包括永久性居民和非永久性居民。</p>
             <p>香港特別行政區永久性居民為：</p>
-            <List>
+            <ul className={styles.list}>
               <li> ( 一 ) 在香港特別行政區成立以前或以後在香港出生的中國公民;</li>
               <li> ( 二 ) 在香港特別行政區成立以前或以後在香港通常居住連續七年以上的中國公民;</li>
               <li> ( 三 ) 第( 一 ) 、( 二 ) 兩項所列居民在香港以外所生的中國籍子女;</li>
@@ -274,7 +181,7 @@ class Home extends React.PureComponent {
               </li>
               <li> ( 五 ) 在香港特別行政區成立以前或以後第( 四) 項所列居民在香港所生的未滿二十一周歲的子女；</li>
               <li> ( 六 ) 第( 一 ) 至( 五 ) 項所列居民以外在香港特別行政區成立以前只在香港有居留權的人。</li>
-            </List>
+            </ul>
             <p>以上居民在香港特別行政區享有居留權和有資格依照香港特別行政區法律取得載明其居留權的永久性居民身份證。</p>
             <p>香港特別行政區非永久性居民為：有資格依照香港特別行政區法律取得香港居民身份證，但沒有居留權的人。</p>
             <strong>第二十五條</strong>
@@ -328,16 +235,20 @@ class Home extends React.PureComponent {
             <strong>第四十二條</strong>
             <p>香港居民和在香港的其他人有遵守香港特別行政區實行的法律的義務。</p>
             <hr />
-            <ChapterTitle id="chapter-4">第四章: 政治體制</ChapterTitle>
-            <List>
+            <h3 className={styles.chapterTitle} id="chapter-4">
+              第四章: 政治體制
+            </h3>
+            <ul className={styles.list}>
               <li>第一節 - 行政長官</li>
               <li>第二節 - 行政機關</li>
               <li>第三節 - 立法機關</li>
               <li>第四節 - 司法機關</li>
               <li>第五節 - 區域組織</li>
               <li>第六節 - 公務人員</li>
-            </List>
-            <h3 id="chapter-4-section-1">第一節: 行政長官</h3>
+            </ul>
+            <h3 className={styles.chapterTitle} id="chapter-4-section-1">
+              第一節: 行政長官
+            </h3>
             <strong>第四十三條</strong>
             <p>香港特別行政區行政長官是香港特別行政區的首長，代表香港特別行政區。</p>
             <p>香港特別行政區行政長官依照本法的規定對中央人民政府和香港特別行政區負責。</p>
@@ -358,13 +269,13 @@ class Home extends React.PureComponent {
             <p>行政長官就任時應向香港特別行政區終審法院首席法官申報財產，記錄在案。</p>
             <strong>第四十八條</strong>
             <p>香港特別行政區行政長官行使下列職權：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 領導香港特別行政區政府；</li>
               <li>( 二 ) 負責執行本法和依照本法適用於香港特別行政區的其他法律；</li>
               <li>( 三 ) 簽署立法會通過的法案，公布法律；</li>
-            </List>
+            </ul>
             <p>簽署立法會通過的財政預算案，將財政預算、決算報中央人民政府備案；</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 四 ) 決定政府政策和發布行政命令；</li>
               <li>
                 ( 五 )
@@ -381,7 +292,7 @@ class Home extends React.PureComponent {
               </li>
               <li>( 十二 ) 赦免或減輕刑事罪犯的刑罰；</li>
               <li>( 十三 ) 處理請願、申訴事項。</li>
-            </List>
+            </ul>
             <strong>第四十九條</strong>
             <p>
               香港特別行政區行政長官如認為立法會通過的法案不符合香港特別行政區的整體利益，可在三個月內將法案發回立法會重議，立法會如以不少於全體議員三分之二多數再次通過原案，行政長官必須在一個月內簽署公佈或按本法第五十條的規定處理。
@@ -397,7 +308,7 @@ class Home extends React.PureComponent {
             </p>
             <strong>第五十二條</strong>
             <p>香港特別行政區行政長官如有下列情況之一者必須辭職：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 因嚴重疾病或其他原因無力履行職務；</li>
               <li>
                 ( 二 )
@@ -406,7 +317,7 @@ class Home extends React.PureComponent {
               <li>
                 ( 三 ) 因立法會拒絕通過財政預算案或其他重要法案而解散立法會，重選的立法會繼續拒絕通過所爭議的原案。
               </li>
-            </List>
+            </ul>
             <strong>第五十三條</strong>
             <p>香港特別行政區行政長官短期不能履行職務時，由政務司長、財政司長、律政司長依次臨時代理其職務。</p>
             <p>
@@ -430,7 +341,9 @@ class Home extends React.PureComponent {
             <p>香港特別行政區設立廉政公署，獨立工作，對行政長官負責。</p>
             <strong>第五十八條</strong>
             <p>香港特別行政區設立審計署，獨立工作，對行政長官負責。</p>
-            <h3 id="chapter-4-section-2">第二節: 行政機關</h3>
+            <h3 className={styles.chapterTitle} id="chapter-4-section-2">
+              第二節: 行政機關
+            </h3>
             <strong>第五十九條</strong>
             <p>香港特別行政區政府是香港特別行政區行政機關。</p>
             <strong>第六十條</strong>
@@ -442,14 +355,14 @@ class Home extends React.PureComponent {
             </p>
             <strong>第六十二條</strong>
             <p>香港特別行政區政府行使下列職權：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 制定並執行政策；</li>
               <li>( 二 ) 管理各項行政事務；</li>
               <li>( 三 ) 辦理本法規定的中央人民政府授權的對外事務；</li>
               <li>( 四 ) 編制並提出財政預算、決算；</li>
               <li>( 五 ) 擬定並提出法案、議案、附屬法規；</li>
               <li>( 六 ) 委派官員列席立法會並代表政府發言。</li>
-            </List>
+            </ul>
             <strong>第六十三條</strong>
             <p>香港特別行政區律政司主管刑事檢察工作，不受任何干涉。</p>
             <strong>第六十四條</strong>
@@ -458,7 +371,9 @@ class Home extends React.PureComponent {
             </p>
             <strong>第六十五條</strong>
             <p>原由行政機關設立諮詢組織的制度繼續保留。</p>
-            <h3 id="chapter-4-section-3">第三節: 立法機關</h3>
+            <h3 className={styles.chapterTitle} id="chapter-4-section-3">
+              第三節: 立法機關
+            </h3>
             <strong>第六十六條</strong>
             <p>香港特別行政區立法會是香港特別行政區的立法機關。</p>
             <strong>第六十七條</strong>
@@ -482,17 +397,17 @@ class Home extends React.PureComponent {
             </p>
             <strong>第七十二條</strong>
             <p>香港特別行政區立法會主席行使下列職權：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 主持會議；</li>
               <li>( 二 ) 決定議程，政府提出的議案須優先列入議程；</li>
               <li>( 三 ) 決定開會時間；</li>
               <li>( 四 ) 在休會期間可召開特別會議；</li>
               <li>( 五 ) 應行政長官的要求召開緊急會議；</li>
               <li>( 六 ) 立法會議事規則所規定的其他職權。</li>
-            </List>
+            </ul>
             <strong>第七十三條</strong>
             <p>香港特別行政區立法會行使下列職權：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 根據本法規定並依照法定程序制定、修改和廢除法律；</li>
               <li>( 二 ) 根據政府的提案，審核、通過財政預算；</li>
               <li>( 三 ) 批准稅收和公共開支；</li>
@@ -506,7 +421,7 @@ class Home extends React.PureComponent {
                 如立法會全體議員的四分之一聯合動議，指控行政長官有嚴重違法或瀆職行為而不辭職，經立法會通過進行調查，立法會可委托終審法院首席法官負責組成獨立的調查委員會，並擔任主席。調查委員會負責進行調查，並向立法會提出報告。如該調查委員會認為有足夠證據構成上述指控，立法會以全體議員三分之二多數通過，可提出彈劾案，報請中央人民政府決定；
               </li>
               <li>( 十 ) 在行使上述各項職權時，如有需要，可傳召有關人士出席作證和提供證據。</li>
-            </List>
+            </ul>
             <strong>第七十四條</strong>
             <p>
               香港特別行政區立法會議員根據本法規定並依照法定程序提出法律草案，凡不涉及公共開支或政治體制或政府運作者，可由立法會議員個別或聯名提出。凡涉及政府政策者，在提出前必須得到行政長官的書面同意。
@@ -522,7 +437,7 @@ class Home extends React.PureComponent {
             <p>香港特別行政區立法會議員出席會議時和赴會途中不受逮捕。</p>
             <strong>第七十九條</strong>
             <p>香港特別行政區立法會議員如有下列情況之一，由立法會主席宣告其喪失立法會議員的資格：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 因嚴重疾病或其他情況無力履行職務；</li>
               <li>( 二 ) 未得到立法會主席的同意，連續三個月不出席會議而無合理解釋者；</li>
               <li>( 三 ) 喪失或放棄香港特別行政區永久性居民的身份；</li>
@@ -533,8 +448,10 @@ class Home extends React.PureComponent {
                 在香港特別行政區區內或區外被判犯有刑事罪行，判處監禁一個月以上，並經立法會出席會議的議員三分之二通過解除其職務；
               </li>
               <li>( 七 ) 行為不檢或違反誓言而經立法會出席會議的議員三分之二通過譴責。</li>
-            </List>
-            <h3 id="chapter-4-section-4">第四節: 司法機關</h3>
+            </ul>
+            <h3 className={styles.chapterTitle} id="chapter-4-section-4">
+              第四節: 司法機關
+            </h3>
             <strong>第八十條</strong>
             <p>香港特別行政區各級法院是香港特別行政區的司法機關，行使香港特別行政區的審判權。</p>
             <strong>第八十一條</strong>
@@ -596,14 +513,18 @@ class Home extends React.PureComponent {
             <p>香港特別行政區可與全國其他地區的司法機關通過協商依法進行司法方面的聯繫和相互提供協助。</p>
             <strong>第九十六條</strong>
             <p>在中央人民政府協助或授權下，香港特別行政區政府可與外國就司法互助關係作出適當安排。</p>
-            <h3 id="chapter-4-section-5">第五節: 區域組織</h3>
+            <h3 className={styles.chapterTitle} id="chapter-4-section-5">
+              第五節: 區域組織
+            </h3>
             <strong>第九十七條</strong>
             <p>
               香港特別行政區可設立非政權性的區域組織，接受香港特別行政區政府就有關地區管理和其他事務的諮詢，或負責提供文化、康樂、環境衛生等服務。
             </p>
             <strong>第九十八條</strong>
             <p>區域組織的職權和組成方法由法律規定。</p>
-            <h3 id="chapter-4-section-6">第六節: 公務人員</h3>
+            <h3 className={styles.chapterTitle} id="chapter-4-section-6">
+              第六節: 公務人員
+            </h3>
             <strong>第九十九條</strong>
             <p>
               在香港特別行政區政府各部門任職的公務人員必須是香港特別行政區永久性居民。本法第一百零一條對外籍公務人員另有規定者或法律規定某一職級以下者不在此限。
@@ -633,14 +554,18 @@ class Home extends React.PureComponent {
               香港特別行政區行政長官、主要官員、行政會議成員、立法會議員、各級法院法官和其他司法人員在就職時必須依法宣誓擁護中華人民共和國香港特別行政區基本法，效忠中華人民共和國香港特別行政區。
             </p>
             <hr />
-            <ChapterTitle id="chapter-5">第五章: 經濟</ChapterTitle>
-            <List>
+            <h3 className={styles.chapterTitle} id="chapter-5">
+              第五章: 經濟
+            </h3>
+            <ul className={styles.list}>
               <li>第一節 - 財政、金融、貿易和工商業</li>
               <li>第二節 - 土地契約</li>
               <li>第三節 - 航運</li>
               <li>第四節 - 民用航空</li>
-            </List>
-            <h3 id="chapter-5-section-1">第一節: 財政、金融、貿易和工商業</h3>
+            </ul>
+            <h3 className={styles.chapterTitle} id="chapter-5-section-1">
+              第一節: 財政、金融、貿易和工商業
+            </h3>
             <strong>第一百零五條</strong>
             <p>
               香港特別行政區依法保護私人和法人財產的取得、使用、處置和繼承的權利，以及依法徵用私人和法人財產時被徵用財產的所有人得到補償的權利。
@@ -695,7 +620,9 @@ class Home extends React.PureComponent {
             <p>
               香港特別行政區政府制定適當政策，促進和協調製造業、商業、旅遊業、房地產業、運輸業、公用事業、服務性行業、漁農業等各行業的發展，並注意環境保護。
             </p>
-            <h3 id="chapter-5-section-2">第二節: 土地契約</h3>
+            <h3 className={styles.chapterTitle} id="chapter-5-section-2">
+              第二節: 土地契約
+            </h3>
             <strong>第一百二十條</strong>
             <p>
               香港特別行政區成立以前已批出、決定、或續期的超越一九九七年六月三十日年期的所有土地契約和與土地契約有關的一切權利，均按香港特別行政區的法律繼續予以承認和保護。
@@ -710,7 +637,9 @@ class Home extends React.PureComponent {
             </p>
             <strong>第一百二十三條</strong>
             <p>香港特別行政區成立以後滿期而沒有續期權利的土地契約，由香港特別行政區自行制定法律和政策處理。</p>
-            <h3 id="chapter-5-section-3">第三節: 航運</h3>
+            <h3 className={styles.chapterTitle} id="chapter-5-section-3">
+              第三節: 航運
+            </h3>
             <strong>第一百二十四條</strong>
             <p>香港特別行政區保持原在香港實行的航運經營和管理體制，包括有關海員的管理制度。</p>
             <p>香港特別行政區政府自行規定在航運方面的具體職能和責任。</p>
@@ -725,7 +654,9 @@ class Home extends React.PureComponent {
             </p>
             <strong>第一百二十七條</strong>
             <p>香港特別行政區的私營航運及與航運有關的企業和私營集裝箱碼頭，可繼續自由經營。</p>
-            <h3 id="chapter-5-section-4">第四節: 民用航空</h3>
+            <h3 className={styles.chapterTitle} id="chapter-5-section-4">
+              第四節: 民用航空
+            </h3>
             <strong>第一百二十八條</strong>
             <p>香港特別行政區政府應提供條件和採取措施，以保持香港的國際和區域航空中心的地位。</p>
             <strong>第一百二十九條</strong>
@@ -753,27 +684,29 @@ class Home extends React.PureComponent {
             </p>
             <strong>第一百三十三條</strong>
             <p>香港特別行政區政府經中央人民政府具體授權可：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 續簽或修改原有的民用航空運輸協定和協議；</li>
               <li>
                 ( 二 )
                 談判簽訂新的民用航空運輸協定，為在香港特別行政區註冊並以香港為主要營業地的航空公司提供航線，以及過境和技術停降權利；
               </li>
               <li>( 三 ) 同沒有簽訂民用航空運輸協定的外國或地區談判簽訂臨時協議。</li>
-            </List>
+            </ul>
             不涉及往返、經停中國內地而只往返、經停香港的定期航班，均由本條所指的民用航空運輸協定或臨時協議予以規定。
             <strong>第一百三十四條</strong>
             <p>中央人民政府授權香港特別行政區政府：</p>
-            <List>
+            <ul className={styles.list}>
               <li>( 一 ) 同其他當局商談並簽訂有關執行本法第一百三十三條所指民用航空運輸協定和臨時協議的各項安排；</li>
               <li>( 二 ) 對在香港特別行政區註冊並以香港為主要營業地的航空公司簽發執照；</li>
               <li>( 三 ) 依照本法第一百三十三條所指民用航空運輸協定和臨時協議指定航空公司；</li>
               <li>( 四 ) 對外國航空公司除往返、經停中國內地的航班以外的其他航班簽發許可證。</li>
-            </List>
+            </ul>
             <strong>第一百三十五條</strong>
             <p>香港特別行政區成立前在香港註冊並以香港為主要營業地的航空公司和與民用航空有關的行業，可繼續經營。</p>
             <hr />
-            <ChapterTitle id="chapter-6">第六章: 教育、科學、文化、體育、宗教、勞工和社會服務</ChapterTitle>
+            <h3 className={styles.chapterTitle} id="chapter-6">
+              第六章: 教育、科學、文化、體育、宗教、勞工和社會服務
+            </h3>
             <strong>第一百三十六條</strong>
             <p>
               香港特別行政區政府在原有教育制度的基礎上，自行制定有關教育的發展和改進的政策，包括教育體制和管理、教學語言、經費分配、考試制度、學位制度和承認學歷等政策。
@@ -829,7 +762,9 @@ class Home extends React.PureComponent {
               中國香港" 的名義，參與有關活動。
             </p>
             <hr />
-            <ChapterTitle id="chapter-7">第七章: 對外事務</ChapterTitle>
+            <h3 className={styles.chapterTitle} id="chapter-7">
+              第七章: 對外事務
+            </h3>
             <strong>第一百五十條</strong>
             <p>
               香港特別行政區政府的代表，可作為中華人民共和國政府代表團的成員，參加由中央人民政府進行的同香港特別行政區直接有關的外交談判。
@@ -873,7 +808,9 @@ class Home extends React.PureComponent {
             </p>
             <p>尚未為中華人民共和國承認的國家，只能在香港特別行政區設立民間機構。</p>
             <hr />
-            <ChapterTitle id="chapter-8">第八章: 本法的解釋和修改</ChapterTitle>
+            <h3 className={styles.chapterTitle} id="chapter-8">
+              第八章: 本法的解釋和修改
+            </h3>
             <strong>第一百五十八條</strong>
             <p>本法的解釋權屬於全國人民代表大會常務委員會。</p>
             <p>
@@ -891,7 +828,9 @@ class Home extends React.PureComponent {
             <p>本法的修改議案在列入全國人民代表大會的議程前，先由香港特別行政區基本法委員會研究並提出意見。</p>
             <p>本法的任何修改，均不得同中華人民共和國對香港既定的基本方針政策相抵觸。</p>
             <hr />
-            <ChapterTitle id="chapter-9">第九章: 附則</ChapterTitle>
+            <h3 className={styles.chapterTitle} id="chapter-9">
+              第九章: 附則
+            </h3>
             <strong>第一百六十條</strong>
             <p>
               香港特別行政區成立時，香港原有法律除由全國人民代表大會常務委員會宣佈為同本法抵觸者外，採用為香港特別行政區法律，如以後發現有的法律與本法抵觸，可依照本法規定的程序修改或停止生效。
@@ -899,22 +838,22 @@ class Home extends React.PureComponent {
             <p>
               在香港原有法律下有效的文件、證件、契約和權利義務，在不抵觸本法的前提下繼續有效，受香港特別行政區的承認和保護。
             </p>
-          </ArticleContainer>
+          </div>
 
-          <SidebarContainer visible={showSidebar}>
+          <div className={`${styles.sidebarContainer} ${showSidebar ? styles.visible : ''}`}>
             {isMobile && <PageTitle style={{ padding: '0.4rem .8rem', marginBottom: '0.5rem' }}>目錄</PageTitle>}
             <Sidebar onClick={this.handleSidebarClick} />
-          </SidebarContainer>
-        </Grid>
+          </div>
+        </div>
 
         {isMobile && (
-          <MenuButton role="button" aria-label="目錄" onClick={this.handleMenuClick}>
+          <button className={styles.menuButton} aria-label="目錄" onClick={this.handleMenuClick}>
             {showSidebar ? <RemoveIcon /> : <MenuIcon />}
-          </MenuButton>
+          </button>
         )}
       </div>
     )
   }
 }
 
-export default withResponsive(Home)
+export default withResponsive(HomePage)

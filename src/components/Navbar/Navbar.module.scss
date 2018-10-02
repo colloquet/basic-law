@@ -1,0 +1,40 @@
+.wrapper {
+  box-shadow: 0 4px 6px rgba(#000, 0.1);
+  background: #e74c3c;
+  transition: background 0.5s;
+  will-change: background;
+
+  [data-dark-mode] & {
+    background: #282828;
+  }
+}
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.navbarRight {
+  position: relative;
+  display: none;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.nightModeToggle {
+  background: transparent;
+  border: 0;
+  padding: 0 1rem;
+  margin-left: auto;
+  outline: 0;
+  color: #fff;
+  cursor: pointer;
+
+  [data-dark-mode] & {
+    color: rgba(#fff, 0.88);
+  }
+}

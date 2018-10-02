@@ -1,0 +1,32 @@
+.buttonGroup {
+  background: #f5f6f7;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+
+  [data-dark-mode] & {
+    background: #282828;
+  }
+}
+
+.button {
+  display: inline-block;
+  width: 50%;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0 1rem;
+  text-decoration: none;
+  text-align: center;
+  color: inherit;
+
+  &.active,
+  &:hover {
+    background: #e6e6e6;
+    color: inherit;
+
+    [data-dark-mode] & {
+      background: rgba(#fff, 0.1);
+    }
+  }
+}

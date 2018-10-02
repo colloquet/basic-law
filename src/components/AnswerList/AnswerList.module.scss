@@ -1,0 +1,48 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+
+  &:nth-child(n + 2) {
+    padding-top: 0.5rem;
+  }
+}
+
+.radio {
+  flex-shrink: 0;
+  cursor: pointer;
+
+  ~ svg {
+    visibility: hidden;
+  }
+
+  &:checked {
+    ~ svg {
+      visibility: visible;
+    }
+
+    &[data-correct='true'] {
+      + label,
+      ~ svg {
+        color: #27ae60;
+      }
+    }
+
+    &[data-correct='false'] {
+      + label,
+      ~ svg {
+        color: #e74c3c;
+      }
+    }
+  }
+}
+
+.label {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}

@@ -1,7 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 import Stickyfill from 'stickyfilljs'
 import PropTypes from 'prop-types'
+
+import styles from './Sidebar.module.scss'
 
 const nodeListToArray = nodeList => {
   const array = []
@@ -10,64 +11,6 @@ const nodeListToArray = nodeList => {
   }
   return array
 }
-
-const Container = styled.div`
-  position: sticky;
-  top: 4rem;
-  will-change: transform;
-
-  @media (max-width: 767px) {
-    position: relative;
-    top: 0;
-    padding-bottom: 5rem;
-  }
-`
-
-const List = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`
-
-const SubList = List.extend`
-  padding-left: 2rem;
-  padding-bottom: 0.5rem;
-`
-
-const ListItem = styled.li`
-  line-height: 1.2;
-
-  > a {
-    display: block;
-    border-radius: 16px;
-    padding: 0.4rem 1rem;
-    text-decoration: none;
-    color: inherit;
-
-    &:hover,
-    &.is-active {
-      background: #f5f6f7;
-      color: inherit;
-
-      .is-dark & {
-        background: rgba(255, 255, 255, 0.1);
-      }
-    }
-  }
-`
-
-const SubListItem = styled.li`
-  line-height: 1.2;
-
-  > a {
-    padding: 0;
-    font-size: 0.75rem;
-
-    &.is-active {
-      text-decoration: underline;
-    }
-  }
-`
 
 const chapterList = [
   { anchor: '#chapter-1', label: '第一章: 總則' },
@@ -138,39 +81,39 @@ class Sidebar extends React.PureComponent {
     }
 
     const link = document.querySelector(`[href="#${last}"]`)
-    const activeLinks = document.querySelector('.is-active')
+    const activeLinks = document.querySelector('[data-is-active]')
     if (activeLinks) {
-      document.querySelector('.is-active').classList.remove('is-active')
+      document.querySelector('[data-is-active]').removeAttribute('data-is-active')
     }
-    link.classList.add('is-active')
+    link.setAttribute('data-is-active', true)
   }
 
   render() {
     const { onClick } = this.props
 
     return (
-      <Container innerRef={ref => (this.container = ref)} data-list>
-        <List>
+      <div ref={ref => (this.container = ref)} className={styles.container} data-list>
+        <ul className={styles.list}>
           {chapterList.map(chapter => (
-            <ListItem key={chapter.anchor}>
+            <li key={chapter.anchor} className={styles.listItem}>
               <a href={chapter.anchor} onClick={onClick}>
                 {chapter.label}
               </a>
               {chapter.sectionList && (
-                <SubList>
+                <ul className={styles.subList}>
                   {chapter.sectionList.map(section => (
-                    <SubListItem key={section.anchor}>
+                    <li key={section.anchor} className={styles.subListItem}>
                       <a href={section.anchor} onClick={onClick}>
                         {section.label}
                       </a>
-                    </SubListItem>
+                    </li>
                   ))}
-                </SubList>
+                </ul>
               )}
-            </ListItem>
+            </li>
           ))}
-        </List>
-      </Container>
+        </ul>
+      </div>
     )
   }
 }

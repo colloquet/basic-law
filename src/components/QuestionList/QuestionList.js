@@ -1,29 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { shuffle } from '../utils'
-import AnswerList from './AnswerList'
-import questions from '../questions'
-
-const Question = styled.div`
-  text-align: justify;
-  line-height: 24px;
-  letter-spacing: 1px;
-  font-size: 18px;
-  word-break: break-word;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-
-  & + & {
-    margin-top: 2rem;
-  }
-`
-
-const QuestionLabel = styled.p`
-  margin: 0 0 0.5rem;
-  font-weight: bold;
-`
+import { shuffle } from '../../utils'
+import AnswerList from '../AnswerList/AnswerList'
+import { questions } from '../../questions.json'
+import styles from './QuestionList.module.scss'
 
 class QuestionList extends React.PureComponent {
   static propTypes = {
@@ -44,12 +25,12 @@ class QuestionList extends React.PureComponent {
 
   render() {
     return this.state.questions.map((question, qIndex) => (
-      <Question key={qIndex}>
-        <QuestionLabel>
+      <div key={qIndex} className={styles.container}>
+        <p className={styles.questionLabel}>
           {qIndex + 1}. {question.text}
-        </QuestionLabel>
+        </p>
         <AnswerList list={question.answers} qIndex={qIndex} />
-      </Question>
+      </div>
     ))
   }
 }

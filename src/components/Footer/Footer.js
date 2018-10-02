@@ -1,16 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-
-const Container = styled.div`
-  text-align: center;
-  margin: 1rem 1rem 2rem;
-  color: #999;
-  font-size: 0.75rem;
-`
+import styles from './Footer.module.scss'
 
 function Footer() {
   return (
-    <Container>
+    <div className={styles.container}>
       <p>
         <span title="Coded">&lt;/&gt;</span> in <span title="Hong Kong" role="img" aria-label="Hong Kong">🇭🇰</span> by{' '}
         <a href="https://colloque.io/" target="_blank" rel="noopener noreferrer">
@@ -31,7 +24,7 @@ function Footer() {
         data-show-faces="true"
         data-share="true"
       />
-    </Container>
+    </div>
   )
 }
 

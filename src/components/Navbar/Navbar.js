@@ -1,58 +1,16 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import SunIcon from 'react-feather/dist/icons/sun'
 import MoonIcon from 'react-feather/dist/icons/moon'
 
 import store from '../../storage'
-
 import withResponsive from '../withResponsive'
-import TopAppBar from '../TopAppBar'
+import TopAppBar from '../TopAppBar/TopAppBar'
 import NavbarItem from './NavbarItem'
+import styles from './Navbar.module.scss'
 
-const Wrapper = styled.div`
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background: #e74c3c;
-  transition: background 0.5s;
-  will-change: background;
-
-  .is-dark & {
-    background: #282828;
-  }
-`
-
-const Container = styled.div`
-  display: flex;
-  margin: 0 auto;
-  max-width: 1200px;
-`
-
-const NavbarRight = styled.div`
-  position: relative;
-  display: none;
-  overflow: hidden;
-
-  @media (min-width: 768px) {
-    display: flex;
-  }
-`
-
-const NightModeToggle = styled.button`
-  background: transparent;
-  border: 0;
-  padding: 0 1rem;
-  margin-left: auto;
-  outline: 0;
-  color: #fff;
-  cursor: pointer;
-
-  .is-dark & {
-    color: rgba(255, 255, 255, 0.88);
-  }
-`
-
-class Navbar extends React.PureComponent {
+class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -75,26 +33,26 @@ class Navbar extends React.PureComponent {
     return (
       <TopAppBar zIndex={2} disabled={!isMobile}>
         <Helmet>
-          <html className={darkMode ? 'is-dark' : ''} />
+          {darkMode && <html data-dark-mode />}
         </Helmet>
-        <Wrapper>
-          <Container>
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
             <NavbarItem to="/" logo>
               BasicLaw.hk
             </NavbarItem>
 
-            <NightModeToggle onClick={this.toggleDarkMode} title={darkMode ? '開燈' : '熄燈'}>
+            <button className={styles.nightModeToggle} onClick={this.toggleDarkMode} title={darkMode ? '開燈' : '熄燈'}>
               {darkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-            </NightModeToggle>
-            <NavbarRight>
+            </button>
+            <div className={styles.navbarRight}>
               <NavbarItem to="/" exact>
                 基本法全文
               </NavbarItem>
               <NavbarItem to="/practice">CRE基本法測試練習試題</NavbarItem>
               <NavbarItem to="/about">關於</NavbarItem>
-            </NavbarRight>
-          </Container>
-        </Wrapper>
+            </div>
+          </div>
+        </div>
       </TopAppBar>
     )
   }

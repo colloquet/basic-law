@@ -1,13 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-`
+import styles from './TopAppBar.module.scss'
 
 class TopAppBar extends React.PureComponent {
   static propTypes = {
@@ -118,9 +112,9 @@ class TopAppBar extends React.PureComponent {
     const { children, zIndex } = this.props
 
     return (
-      <Container innerRef={ref => this.appBar = ref} style={{ zIndex }}>
+      <div ref={ref => (this.appBar = ref)} style={{ zIndex }} className={styles.container}>
         {children}
-      </Container>
+      </div>
     )
   }
 }
