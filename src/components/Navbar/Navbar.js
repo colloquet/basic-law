@@ -34,6 +34,7 @@ class Navbar extends React.Component {
       <TopAppBar zIndex={2} disabled={!isMobile}>
         <Helmet>
           {darkMode && <html data-dark-mode />}
+          <meta name="theme-color" content={darkMode ? '#282828' : '#e74c3c'} />
         </Helmet>
         <div className={styles.wrapper}>
           <div className={styles.container}>
