@@ -12,7 +12,7 @@
     "react-feather": "^1.1.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.3",
+    "react-scripts": "2.0.4",
     "smooth-scroll": "^14.2.0",
     "stickyfilljs": "^2.0.5"
   },

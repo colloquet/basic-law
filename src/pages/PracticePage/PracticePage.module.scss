@@ -4,6 +4,8 @@
   width: 100%;
   overflow: hidden;
   margin-bottom: 1rem;
+  transition: background 0.5s;
+  will-change: background;
 
   [data-dark-mode] & {
     background: #282828;
@@ -19,6 +21,8 @@
   text-decoration: none;
   text-align: center;
   color: inherit;
+  transition: background 0.5s;
+  will-change: background;
 
   &.active,
   &:hover {

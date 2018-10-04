@@ -6,7 +6,7 @@ import styles from './NavbarItem.module.scss'
 
 function NavbarItem({ children, logo, ...props }) {
   return (
-    <NavLink {...props} className={styles.navLink} activeClassName={logo ? null : styles.active}>
+    <NavLink {...props} className={`${styles.navLink} ${logo ? styles.isLogo : ''}`} activeClassName={logo ? null : styles.active}>
       {children}
     </NavLink>
   )

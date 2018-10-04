@@ -18,8 +18,6 @@
 
 .subList {
   composes: list;
-  padding-left: 2rem;
-  padding-bottom: 0.5rem;
 }
 
 .listItem {
@@ -27,32 +25,45 @@
 
   > a {
     display: block;
-    border-radius: 16px;
+    border-left: 2px solid rgba(#bdbdbd, 0.4);
     padding: 0.4rem 1rem;
     text-decoration: none;
-    color: inherit;
+    color: #5f6368;
+    font-size: 1rem;
+    transition: border-left-color 0.5s;
 
-    &:hover,
-    &[data-is-active] {
+    [data-dark-mode] & {
+      border-left-color: #202124;
+    }
+
+    &:hover {
       background: #f5f6f7;
-      color: inherit;
+      color: #202124;
 
       [data-dark-mode] & {
-        background: rgba(#fff, 0.1);
+        background: rgba(#fff, 0.05);
+        color: rgba(#fff, 0.68);
+      }
+    }
+
+    &[data-is-active] {
+      border-left-color: #202124;
+      color: #202124;
+      font-weight: bold;
+
+      [data-dark-mode] & {
+        border-left-color: rgba(#bdbdbd, 0.4);
+        color: rgba(#fff, 0.68);
       }
     }
   }
 }
 
 .subListItem {
-  line-height: 1.2;
+  composes: listItem;
 
   > a {
-    padding: 0;
+    padding-left: 2rem;
     font-size: 0.75rem;
-
-    &[data-is-active] {
-      text-decoration: underline;
-    }
   }
 }
