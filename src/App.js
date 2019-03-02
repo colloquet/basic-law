@@ -1,17 +1,17 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import Router from 'react-router-dom/BrowserRouter'
-import Route from 'react-router-dom/Route'
+import React from 'react';
+import Helmet from 'react-helmet';
+import Router from 'react-router-dom/BrowserRouter';
+import Route from 'react-router-dom/Route';
 
-import ScrollToTop from './components/ScrollToTop'
-import Navbar from './components/Navbar/Navbar'
-import BottomBar from './components/BottomBar/BottomBar'
-import Footer from './components/Footer/Footer'
+import ScrollToTop from './components/ScrollToTop';
+import Navbar from './components/Navbar/Navbar';
+import BottomBar from './components/BottomBar/BottomBar';
+import Footer from './components/Footer/Footer';
 
-import HomePage from './pages/HomePage/HomePage'
-import AboutPage from './pages/AboutPage/AboutPage'
-import PracticePage from './pages/PracticePage/PracticePage'
-import styles from './App.module.scss'
+import HomePage from './pages/HomePage/HomePage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import PracticePage from './pages/PracticePage/PracticePage';
+import styles from './App.module.scss';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         </div>
       </ScrollToTop>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

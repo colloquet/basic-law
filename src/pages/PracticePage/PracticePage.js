@@ -1,12 +1,12 @@
-import React from 'react'
-import Route from 'react-router-dom/Route'
-import NavLink from 'react-router-dom/NavLink'
-import Helmet from 'react-helmet'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Route from 'react-router-dom/Route';
+import NavLink from 'react-router-dom/NavLink';
+import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
 
-import PageTitle from '../../components/PageTitle/PageTitle'
-import QuestionList from '../../components/QuestionList/QuestionList'
-import styles from './PracticePage.module.scss'
+import PageTitle from '../../components/PageTitle/PageTitle';
+import QuestionList from '../../components/QuestionList/QuestionList';
+import styles from './PracticePage.module.scss';
 
 function PracticePage({ match }) {
   return (
@@ -27,11 +27,11 @@ function PracticePage({ match }) {
       <Route exact path={match.url} render={() => <QuestionList />} />
       <Route path={`${match.url}/random`} render={() => <QuestionList size={15} />} />
     </div>
-  )
+  );
 }
 
 PracticePage.propTypes = {
   match: PropTypes.object.isRequired,
-}
+};
 
-export default PracticePage
+export default PracticePage;

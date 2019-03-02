@@ -1,11 +1,15 @@
-import React from 'react'
-import styles from './Footer.module.scss'
+import React from 'react';
+import styles from './Footer.module.scss';
 
 function Footer() {
   return (
     <div className={styles.container}>
       <p>
-        <span title="Coded">&lt;/&gt;</span> in <span title="Hong Kong" role="img" aria-label="Hong Kong">🇭🇰</span> by{' '}
+        <span title="Coded">&lt;/&gt;</span> in{' '}
+        <span title="Hong Kong" role="img" aria-label="Hong Kong">
+          🇭🇰
+        </span>{' '}
+        by{' '}
         <a href="https://colloque.io/" target="_blank" rel="noopener noreferrer">
           Colloque Tsui
         </a>
@@ -25,7 +29,7 @@ function Footer() {
         data-share="true"
       />
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

@@ -1,16 +1,16 @@
-import React from 'react'
-import Stickyfill from 'stickyfilljs'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Stickyfill from 'stickyfilljs';
+import PropTypes from 'prop-types';
 
-import styles from './Sidebar.module.scss'
+import styles from './Sidebar.module.scss';
 
 const nodeListToArray = nodeList => {
-  const array = []
+  const array = [];
   for (var i = 0, ref = (array.length = nodeList.length); i < ref; i++) {
-    array[i] = nodeList[i]
+    array[i] = nodeList[i];
   }
-  return array
-}
+  return array;
+};
 
 const chapterList = [
   { anchor: '#chapter-1', label: '第一章: 總則' },
@@ -42,54 +42,54 @@ const chapterList = [
   { anchor: '#chapter-7', label: '第七章: 對外事務' },
   { anchor: '#chapter-8', label: '第八章: 本法的解釋和修改' },
   { anchor: '#chapter-9', label: '第九章: 附則' },
-]
+];
 
 class Sidebar extends React.PureComponent {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-  }
+  };
 
   componentDidMount() {
-    const chapters = document.querySelectorAll('[id^="chapter-"]')
+    const chapters = document.querySelectorAll('[id^="chapter-"]');
     this.chapters = nodeListToArray(chapters).reduce(
       (all, chapter) => ({
         ...all,
         [chapter.id]: chapter.offsetTop,
       }),
       {},
-    )
-    window.addEventListener('scroll', this.scrollHandler)
-    this.scrollHandler()
-    Stickyfill.addOne(this.container)
+    );
+    window.addEventListener('scroll', this.scrollHandler);
+    this.scrollHandler();
+    Stickyfill.addOne(this.container);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.scrollHandler)
-    Stickyfill.removeOne(this.container)
+    window.removeEventListener('scroll', this.scrollHandler);
+    Stickyfill.removeOne(this.container);
   }
 
   scrollHandler = () => {
-    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop
-    const ids = Object.keys(this.chapters)
+    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    const ids = Object.keys(this.chapters);
 
-    let last = 'chapter-1'
+    let last = 'chapter-1';
     for (let index = 0; index < ids.length; index += 1) {
-      const key = ids[index]
+      const key = ids[index];
       if (this.chapters[key] <= scrollPosition) {
-        last = key
+        last = key;
       }
     }
 
-    const link = document.querySelector(`[href="#${last}"]`)
-    const activeLinks = document.querySelector('[data-is-active]')
+    const link = document.querySelector(`[href="#${last}"]`);
+    const activeLinks = document.querySelector('[data-is-active]');
     if (activeLinks) {
-      document.querySelector('[data-is-active]').removeAttribute('data-is-active')
+      document.querySelector('[data-is-active]').removeAttribute('data-is-active');
     }
-    link.setAttribute('data-is-active', true)
-  }
+    link.setAttribute('data-is-active', true);
+  };
 
   render() {
-    const { onClick } = this.props
+    const { onClick } = this.props;
 
     return (
       <div ref={ref => (this.container = ref)} className={styles.container} data-list>
@@ -114,8 +114,8 @@ class Sidebar extends React.PureComponent {
           ))}
         </ul>
       </div>
-    )
+    );
   }
 }
 
-export default Sidebar
+export default Sidebar;

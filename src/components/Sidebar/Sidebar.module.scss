@@ -1,12 +1,27 @@
 .container {
   position: sticky;
   top: 4rem;
+  max-height: calc(100vh - 5rem);
+  overflow: auto;
   will-change: transform;
 
   @media (max-width: 767px) {
     position: relative;
     top: 0;
     padding-bottom: 5rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.4);
+    border-radius: .8rem;
   }
 }
 

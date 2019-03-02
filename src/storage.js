@@ -1,49 +1,49 @@
 function MemoryStorage() {
-  let structureLocalStorage = {}
+  let structureLocalStorage = {};
   this.set = (key, value) => {
-    structureLocalStorage[key] = value
-  }
+    structureLocalStorage[key] = value;
+  };
   this.get = key => {
     if (typeof structureLocalStorage[key] !== 'undefined') {
-      return structureLocalStorage[key]
+      return structureLocalStorage[key];
     }
-    return null
-  }
-  this.remove = key => delete structureLocalStorage[key]
+    return null;
+  };
+  this.remove = key => delete structureLocalStorage[key];
   this.clear = () => {
-    structureLocalStorage = {}
-  }
+    structureLocalStorage = {};
+  };
 }
 
 function LocalStorage() {
   this.set = (key, value) => {
-    window.localStorage.setItem(key, JSON.stringify(value))
-  }
+    window.localStorage.setItem(key, JSON.stringify(value));
+  };
   this.get = key => {
     try {
-      return JSON.parse(window.localStorage.getItem(key))
+      return JSON.parse(window.localStorage.getItem(key));
     } catch (error) {
-      const item = window.localStorage.getItem(key)
-      window.localStorage.setItem(key, JSON.stringify(item))
-      return item
+      const item = window.localStorage.getItem(key);
+      window.localStorage.setItem(key, JSON.stringify(item));
+      return item;
     }
-  }
-  this.remove = key => window.localStorage.removeItem(key)
-  this.clear = () => window.localStorage.clear()
+  };
+  this.remove = key => window.localStorage.removeItem(key);
+  this.clear = () => window.localStorage.clear();
 }
 
 function getStorage() {
-  let storageImpl
+  let storageImpl;
   try {
-    window.localStorage.setItem('_', '')
-    window.localStorage.removeItem('_')
-    storageImpl = new LocalStorage()
+    window.localStorage.setItem('_', '');
+    window.localStorage.removeItem('_');
+    storageImpl = new LocalStorage();
   } catch (e) {
-    storageImpl = new MemoryStorage()
+    storageImpl = new MemoryStorage();
   }
-  return storageImpl
+  return storageImpl;
 }
 
-const storage = getStorage()
+const storage = getStorage();
 
-export default storage
+export default storage;

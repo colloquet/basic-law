@@ -1,8 +1,8 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import React from 'react';
+import Helmet from 'react-helmet';
 
-import PageTitle from '../../components/PageTitle/PageTitle'
-import styles from './AboutPage.module.scss'
+import PageTitle from '../../components/PageTitle/PageTitle';
+import styles from './AboutPage.module.scss';
 
 function AboutPage() {
   return (
@@ -21,7 +21,7 @@ function AboutPage() {
         如有任何意見請 <a href="mailTo:colloquet@icloud.com">email</a> 我。
       </p>
     </div>
-  )
+  );
 }
 
-export default AboutPage
+export default AboutPage;

@@ -1,25 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { ResponsiveConsumer } from '../ResponsiveContext'
+import { ResponsiveConsumer } from '../ResponsiveContext';
 
 function withResponsive(Component) {
   return function ResponsiveComponent(props) {
     return (
-      <ResponsiveConsumer>
-        {context => (
-          <Component
-            {...props}
-            isMobile={context.state.isMobile}
-          />
-        )}
-      </ResponsiveConsumer>
-    )
-  }
+      <ResponsiveConsumer>{context => <Component {...props} isMobile={context.state.isMobile} />}</ResponsiveConsumer>
+    );
+  };
 }
 
 withResponsive.propTypes = {
   Component: PropTypes.node.isRequired,
-}
+};
 
-export default withResponsive
+export default withResponsive;

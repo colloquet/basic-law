@@ -1,55 +1,55 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import RemoveIcon from 'react-feather/dist/icons/x'
-import MenuIcon from 'react-feather/dist/icons/menu'
-import SmoothScroll from 'smooth-scroll'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Helmet from 'react-helmet';
+import RemoveIcon from 'react-feather/dist/icons/x';
+import MenuIcon from 'react-feather/dist/icons/menu';
+import SmoothScroll from 'smooth-scroll';
+import PropTypes from 'prop-types';
 
-import withResponsive from '../../components/withResponsive'
-import PageTitle from '../../components/PageTitle/PageTitle'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import styles from './HomePage.module.scss'
+import withResponsive from '../../components/withResponsive';
+import PageTitle from '../../components/PageTitle/PageTitle';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import styles from './HomePage.module.scss';
 
 class HomePage extends React.PureComponent {
   static propTypes = {
     isMobile: PropTypes.bool.isRequired,
-  }
+  };
 
   state = {
     showSidebar: !this.props.isMobile,
-  }
+  };
 
   componentDidMount() {
-    this.smoothScroll = new SmoothScroll('a[href*="#"]')
+    this.smoothScroll = new SmoothScroll('a[href*="#"]');
     this.smoothScroll.init({
       speed: 400,
-      offset: 0,
-    })
+      speedAsDuration: true,
+    });
   }
 
   componentDidUpdate({ isMobile }) {
     if (isMobile !== this.props.isMobile) {
-      this.setState({ showSidebar: this.props.isMobile ? this.state.showSidebar : true })
+      this.setState({ showSidebar: this.props.isMobile ? this.state.showSidebar : true });
     }
   }
 
   componentWillUnmount() {
-    this.smoothScroll.destroy()
+    this.smoothScroll.destroy();
   }
 
   handleMenuClick = () => {
-    this.setState({ showSidebar: !this.state.showSidebar })
-  }
+    this.setState({ showSidebar: !this.state.showSidebar });
+  };
 
   handleSidebarClick = () => {
     if (this.props.isMobile) {
-      this.setState({ showSidebar: false })
+      this.setState({ showSidebar: false });
     }
-  }
+  };
 
   render() {
-    const { showSidebar } = this.state
-    const { isMobile } = this.props
+    const { showSidebar } = this.state;
+    const { isMobile } = this.props;
 
     return (
       <div>
@@ -854,8 +854,8 @@ class HomePage extends React.PureComponent {
           </button>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default withResponsive(HomePage)
+export default withResponsive(HomePage);
