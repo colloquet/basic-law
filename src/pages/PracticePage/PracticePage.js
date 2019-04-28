@@ -1,12 +1,12 @@
 import React from 'react';
-import Route from 'react-router-dom/Route';
-import NavLink from 'react-router-dom/NavLink';
+import { Route, NavLink } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 
 import PageTitle from '../../components/PageTitle/PageTitle';
 import QuestionList from '../../components/QuestionList/QuestionList';
 import styles from './PracticePage.module.scss';
+
 
 function PracticePage({ match }) {
   return (

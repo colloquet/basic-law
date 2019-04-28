@@ -20,11 +20,12 @@ class HomePage extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.smoothScroll = new SmoothScroll('a[href*="#"]');
-    this.smoothScroll.init({
+    this.smoothScroll = new SmoothScroll('a[href*="#"]', {
       speed: 400,
       speedAsDuration: true,
     });
+
+    import('../../components/QuestionList/QuestionList');
   }
 
   componentDidUpdate({ isMobile }) {

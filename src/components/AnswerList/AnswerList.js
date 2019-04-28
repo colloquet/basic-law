@@ -38,4 +38,4 @@ AnswerList.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
-export default AnswerList;
+export default React.memo(AnswerList);

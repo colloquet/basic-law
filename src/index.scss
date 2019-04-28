@@ -32,6 +32,7 @@ hr {
   margin: 1rem 0;
   border: 0;
   border-top: 1px dashed #ddd;
+  transition: border-color 0.5s;
 
   [data-dark-mode] & {
     border-color: rgba(#fff, 0.08);

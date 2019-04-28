@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Router from 'react-router-dom/BrowserRouter';
-import Route from 'react-router-dom/Route';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar/Navbar';

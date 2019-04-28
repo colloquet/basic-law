@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLink from 'react-router-dom/NavLink';
+import { NavLink } from 'react-router-dom';
 import BookIcon from 'react-feather/dist/icons/book-open';
 import ListIcon from 'react-feather/dist/icons/list';
 import HelpIcon from 'react-feather/dist/icons/help-circle';
