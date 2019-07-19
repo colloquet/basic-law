@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import CheckIcon from 'react-feather/dist/icons/check';
-import RemoveIcon from 'react-feather/dist/icons/x';
+import { Check, X } from 'react-feather';
 
 import { shuffle } from '../../utils';
 import styles from './AnswerList.module.scss';
@@ -25,7 +24,7 @@ function AnswerList({ qIndex, list }) {
             <label htmlFor={id} className={styles.label}>
               {answer.text}
             </label>
-            {answer.correct ? <CheckIcon size={16} /> : <RemoveIcon size={16} />}
+            {answer.correct ? <Check size={16} /> : <X size={16} />}
           </li>
         );
       })}

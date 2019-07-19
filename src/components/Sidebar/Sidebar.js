@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Stickyfill from 'stickyfilljs';
 import PropTypes from 'prop-types';
 
@@ -44,78 +44,78 @@ const chapterList = [
   { anchor: '#chapter-9', label: '第九章: 附則' },
 ];
 
-class Sidebar extends React.PureComponent {
-  static propTypes = {
-    onClick: PropTypes.func.isRequired,
-  };
+function Sidebar({ onClick }) {
+  const container = useRef(null);
 
-  componentDidMount() {
+  useEffect(() => {
+    const containerDom = container.current;
+    Stickyfill.addOne(containerDom);
+    return () => Stickyfill.removeOne(containerDom);
+  }, []);
+
+  useEffect(() => {
     const chapters = document.querySelectorAll('[id^="chapter-"]');
-    this.chapters = nodeListToArray(chapters).reduce(
+    const chaptersById = nodeListToArray(chapters).reduce(
       (all, chapter) => ({
         ...all,
         [chapter.id]: chapter.offsetTop,
       }),
       {},
     );
-    window.addEventListener('scroll', this.scrollHandler);
-    this.scrollHandler();
-    Stickyfill.addOne(this.container);
-  }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.scrollHandler);
-    Stickyfill.removeOne(this.container);
-  }
+    const scrollHandler = () => {
+      const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+      const ids = Object.keys(chaptersById);
 
-  scrollHandler = () => {
-    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-    const ids = Object.keys(this.chapters);
-
-    let last = 'chapter-1';
-    for (let index = 0; index < ids.length; index += 1) {
-      const key = ids[index];
-      if (this.chapters[key] <= scrollPosition) {
-        last = key;
+      let last = 'chapter-1';
+      for (let index = 0; index < ids.length; index += 1) {
+        const key = ids[index];
+        if (chaptersById[key] <= scrollPosition) {
+          last = key;
+        }
       }
-    }
 
-    const link = document.querySelector(`[href="#${last}"]`);
-    const activeLinks = document.querySelector('[data-is-active]');
-    if (activeLinks) {
-      document.querySelector('[data-is-active]').removeAttribute('data-is-active');
-    }
-    link.setAttribute('data-is-active', true);
-  };
+      const link = document.querySelector(`[href="#${last}"]`);
+      const activeLinks = document.querySelector('[data-is-active]');
+      if (activeLinks) {
+        document.querySelector('[data-is-active]').removeAttribute('data-is-active');
+      }
+      link.setAttribute('data-is-active', true);
+    };
 
-  render() {
-    const { onClick } = this.props;
+    scrollHandler();
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
+  }, []);
 
-    return (
-      <div ref={ref => (this.container = ref)} className={styles.container} data-list>
-        <ul className={styles.list}>
-          {chapterList.map(chapter => (
-            <li key={chapter.anchor} className={styles.listItem}>
-              <a href={chapter.anchor} onClick={onClick}>
-                {chapter.label}
-              </a>
-              {chapter.sectionList && (
-                <ul className={styles.subList}>
-                  {chapter.sectionList.map(section => (
-                    <li key={section.anchor} className={styles.subListItem}>
-                      <a href={section.anchor} onClick={onClick}>
-                        {section.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div ref={container} className={styles.container} data-list>
+      <ul className={styles.list}>
+        {chapterList.map(chapter => (
+          <li key={chapter.anchor} className={styles.listItem}>
+            <a href={chapter.anchor} onClick={onClick}>
+              {chapter.label}
+            </a>
+            {chapter.sectionList && (
+              <ul className={styles.subList}>
+                {chapter.sectionList.map(section => (
+                  <li key={section.anchor} className={styles.subListItem}>
+                    <a href={section.anchor} onClick={onClick}>
+                      {section.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
+
+Sidebar.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

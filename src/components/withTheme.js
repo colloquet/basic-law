@@ -7,7 +7,7 @@ function withTheme(Component) {
   return function ThemedComponent(props) {
     return (
       <ThemeConsumer>
-        {context => <Component {...props} darkMode={context.state.darkMode} toggleDarkMode={context.toggleDarkMode} />}
+        {context => <Component {...props} darkMode={context.darkMode} toggleDarkMode={context.toggleDarkMode} />}
       </ThemeConsumer>
     );
   };

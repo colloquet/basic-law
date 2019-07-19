@@ -45,10 +45,11 @@
     text-decoration: none;
     color: #5f6368;
     font-size: 1rem;
-    transition: border-left-color 0.5s;
-
+    transition: all 0.5s;
+    
     [data-dark-mode] & {
       border-left-color: #202124;
+      color: rgba(#fff, 0.38);
     }
 
     &:hover {
@@ -56,8 +57,8 @@
       color: #202124;
 
       [data-dark-mode] & {
-        background: rgba(#fff, 0.05);
-        color: rgba(#fff, 0.68);
+        background: #1e1e1e;
+        color: rgba(#fff, 0.87);
       }
     }
 
@@ -67,8 +68,8 @@
       font-weight: bold;
 
       [data-dark-mode] & {
-        border-left-color: rgba(#bdbdbd, 0.4);
-        color: rgba(#fff, 0.68);
+        border-left-color: rgba(#fff, 0.87);
+        color: rgba(#fff, 0.87);
       }
     }
   }

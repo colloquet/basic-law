@@ -4,16 +4,15 @@
   "private": true,
   "dependencies": {
     "node-sass": "^4.12.0",
-    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-app-polyfill": "^1.0.0",
+    "react-app-polyfill": "^1.0.1",
     "react-dom": "^16.8.6",
-    "react-feather": "^1.1.6",
-    "react-helmet": "^5.2.0",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.0",
-    "smooth-scroll": "^16.0.3",
+    "react-feather": "^2.0.3",
+    "react-helmet": "^5.2.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "smooth-scroll": "^16.1.0",
     "stickyfilljs": "^2.0.5"
   },
   "scripts": {
@@ -24,7 +23,7 @@
     "analyze": "react-scripts build && source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
-    "source-map-explorer": "^1.8.0"
+    "source-map-explorer": "^2.0.1"
   },
   "browserslist": [
     ">0.2%",

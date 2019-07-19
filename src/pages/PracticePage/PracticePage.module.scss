@@ -8,7 +8,7 @@
   will-change: background;
 
   [data-dark-mode] & {
-    background: #282828;
+    background: #1e1e1e;
   }
 }
 
@@ -20,17 +20,21 @@
   padding: 0 1rem;
   text-decoration: none;
   text-align: center;
-  color: inherit;
-  transition: background 0.5s;
-  will-change: background;
+  transition: all 0.5s;
+  color: rgba(#000, 0.6);
 
+  [data-dark-mode] & {
+    color: rgba(#fff, 0.6);
+  }
+  
   &.active,
   &:hover {
     background: #e6e6e6;
-    color: inherit;
-
+    color: rgba(#000, 0.87);
+    
     [data-dark-mode] & {
-      background: rgba(#fff, 0.1);
+      background: rgba(#fff, 0.08);
+      color: rgba(#fff, 0.87);
     }
   }
 }

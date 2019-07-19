@@ -1,37 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ResponsiveContext = React.createContext();
 
-export class ResponsiveProvider extends React.Component {
-  state = {
-    isMobile: window.innerWidth < 768,
-  };
+export function ResponsiveProvider({ children }) {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
-  componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-    this.onResize();
-  }
+  useEffect(() => {
+    const onResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', onResize);
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize);
-  }
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
-  onResize = () => {
-    const isMobile = window.innerWidth < 768;
-    this.setState({ isMobile });
-  };
-
-  render() {
-    return (
-      <ResponsiveContext.Provider
-        value={{
-          state: this.state,
-        }}
-      >
-        {this.props.children}
-      </ResponsiveContext.Provider>
-    );
-  }
+  return <ResponsiveContext.Provider value={isMobile}>{children}</ResponsiveContext.Provider>;
 }
 
 export const ResponsiveConsumer = ResponsiveContext.Consumer;

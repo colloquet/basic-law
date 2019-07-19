@@ -5,9 +5,10 @@ import styles from './TopAppBar.module.scss';
 
 class TopAppBar extends React.PureComponent {
   static propTypes = {
-    zIndex: PropTypes.number.isRequired,
-    maxHeight: PropTypes.number.isRequired,
-    disabled: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
+    zIndex: PropTypes.number,
+    maxHeight: PropTypes.number,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {

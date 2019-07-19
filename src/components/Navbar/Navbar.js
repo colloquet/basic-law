@@ -1,8 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import SunIcon from 'react-feather/dist/icons/sun';
-import MoonIcon from 'react-feather/dist/icons/moon';
+import { Sun, Moon } from 'react-feather';
 
 import withResponsive from '../withResponsive';
 import withTheme from '../withTheme';
@@ -24,7 +23,7 @@ function Navbar({ isMobile, darkMode, toggleDarkMode }) {
           </NavbarItem>
 
           <button className={styles.nightModeToggle} onClick={toggleDarkMode} title={darkMode ? '開燈' : '熄燈'}>
-            {darkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <div className={styles.navbarRight}>
             <NavbarItem to="/" exact>

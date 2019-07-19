@@ -11,13 +11,13 @@
   transition: color 0.3s ease;
 
   [data-dark-mode] & {
-    color: mix(#282828, #fff, 40%);
+    color: rgba(#fff, 0.6);
   }
 
   &:after {
     content: '';
     position: absolute;
-    background: rgba(#fff, 0.88);
+    background: rgba(#fff, 0.87);
     bottom: 0;
     left: 1rem;
     right: 1rem;
@@ -27,7 +27,7 @@
     will-change: transform;
 
     [data-dark-mode] & {
-      background: rgba(#fff, 0.68);
+      background: rgba(#fff, 0.87);
     }
   }
 
@@ -36,7 +36,7 @@
     color: #fff;
 
     [data-dark-mode] & {
-      color: rgba(#fff, 0.88);
+      color: rgba(#fff, 0.87);
     }
 
     &:after {
@@ -50,14 +50,14 @@
   font-weight: bold;
 
   [data-dark-mode] & {
-    color: rgba(#fff, 0.88);
+    color: rgba(#fff, 0.87);
   }
 
   &:hover {
     color: #fff;
 
     [data-dark-mode] & {
-      color: rgba(#fff, 0.88);
+      color: rgba(#fff, 0.87);
     }
   }
 }

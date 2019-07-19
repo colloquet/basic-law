@@ -1,14 +1,16 @@
+@import-normalize;
+
 html {
   font-family: system-ui, sans-serif;
   box-sizing: border-box;
-  color: rgba(#000, 0.78);
+  color: rgba(#000, 0.87);
   line-height: 1.5;
   transition: background 0.5s, color 0.5s;
   will-change: background, color;
 
   &[data-dark-mode] {
-    background: #131313;
-    color: rgba(#fff, 0.68);
+    background: #121212;
+    color: rgba(#fff, 0.87);
   }
 }
 
