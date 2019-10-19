@@ -1,6 +1,6 @@
+// @flow
 import React, { useRef, useEffect } from 'react';
 import Stickyfill from 'stickyfilljs';
-import PropTypes from 'prop-types';
 
 import styles from './Sidebar.module.scss';
 
@@ -44,7 +44,7 @@ const chapterList = [
   { anchor: '#chapter-9', label: '第九章: 附則' },
 ];
 
-function Sidebar({ onClick }) {
+function Sidebar({ onClick }: { onClick: Event => void }) {
   const container = useRef(null);
 
   useEffect(() => {
@@ -64,7 +64,8 @@ function Sidebar({ onClick }) {
     );
 
     const scrollHandler = () => {
-      const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollPosition =
+        (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop);
       const ids = Object.keys(chaptersById);
 
       let last = 'chapter-1';
@@ -76,11 +77,13 @@ function Sidebar({ onClick }) {
       }
 
       const link = document.querySelector(`[href="#${last}"]`);
-      const activeLinks = document.querySelector('[data-is-active]');
-      if (activeLinks) {
-        document.querySelector('[data-is-active]').removeAttribute('data-is-active');
+      const activeLink = document.querySelector('[data-is-active]');
+      if (activeLink) {
+        activeLink.removeAttribute('data-is-active');
       }
-      link.setAttribute('data-is-active', true);
+      if (link) {
+        link.setAttribute('data-is-active', 'true');
+      }
     };
 
     scrollHandler();
@@ -113,9 +116,5 @@ function Sidebar({ onClick }) {
     </div>
   );
 }
-
-Sidebar.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
 
 export default Sidebar;

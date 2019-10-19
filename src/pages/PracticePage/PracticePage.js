@@ -1,14 +1,15 @@
+// @flow
 import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
 import Helmet from 'react-helmet';
-import PropTypes from 'prop-types';
+
+import type { Match } from 'react-router-dom';
 
 import PageTitle from '../../components/PageTitle/PageTitle';
 import QuestionList from '../../components/QuestionList/QuestionList';
 import styles from './PracticePage.module.scss';
 
-
-function PracticePage({ match }) {
+function PracticePage({ match }: { match: Match }) {
   return (
     <div>
       <Helmet title="香港CRE基本法測試練習試題" titleTemplate="%s | 香港CRE基本法測試" />
@@ -29,9 +30,5 @@ function PracticePage({ match }) {
     </div>
   );
 }
-
-PracticePage.propTypes = {
-  match: PropTypes.object.isRequired,
-};
 
 export default PracticePage;

@@ -1,3 +1,4 @@
+// @flow
 import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -8,12 +9,16 @@ import { ResponsiveProvider } from './ResponsiveContext';
 import registerServiceWorker from './registerServiceWorker';
 import './index.scss';
 
-ReactDOM.render(
-  <ResponsiveProvider>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </ResponsiveProvider>,
-  document.getElementById('root'),
-);
+const root = document.getElementById('root');
+
+if (root) {
+  ReactDOM.render(
+    <ResponsiveProvider>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </ResponsiveProvider>,
+    root,
+  );
+}
 registerServiceWorker();

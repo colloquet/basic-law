@@ -1,8 +1,11 @@
+// @flow
 import React, { useState, useEffect } from 'react';
 
-const ResponsiveContext = React.createContext();
+import type { Node } from 'react';
 
-export function ResponsiveProvider({ children }) {
+const ResponsiveContext = React.createContext<boolean>(false);
+
+export function ResponsiveProvider({ children }: { children: Node }) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
   useEffect(() => {

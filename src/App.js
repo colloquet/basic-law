@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import Helmet from 'react-helmet';
 import { BrowserRouter as Router, Route } from 'react-router-dom';

@@ -1,12 +1,16 @@
+// @flow
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 
 import { shuffle } from '../../utils';
 import AnswerList from '../AnswerList/AnswerList';
 import { questions } from '../../questions.json';
 import styles from './QuestionList.module.scss';
 
-function QuestionList({ size }) {
+type Props = {
+  size?: number,
+};
+
+function QuestionList({ size }: Props) {
   const questionsList = useMemo(() => shuffle(questions).slice(0, size || questions.length), [size]);
 
   return questionsList.map((question, qIndex) => (
@@ -19,12 +23,8 @@ function QuestionList({ size }) {
   ));
 }
 
-QuestionList.propTypes = {
-  size: PropTypes.number,
-};
-
 QuestionList.defaultProps = {
   size: null,
 };
 
-export default React.memo(QuestionList);
+export default React.memo<Props>(QuestionList);

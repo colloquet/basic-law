@@ -1,15 +1,20 @@
+// @flow
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
+import type { Node } from 'react';
 
 import styles from './NavbarItem.module.scss';
 
-function NavbarItem({ children, logo, ...props }) {
+type Props = { children: Node, logo: boolean, to: string };
+
+function NavbarItem({ children, logo, to, ...props }: Props) {
   return (
     <NavLink
-      {...props}
+      to={to}
       className={`${styles.navLink} ${logo ? styles.isLogo : ''}`}
-      activeClassName={logo ? null : styles.active}
+      activeClassName={logo ? '' : styles.active}
+      {...props}
     >
       {children}
     </NavLink>
@@ -18,11 +23,6 @@ function NavbarItem({ children, logo, ...props }) {
 
 NavbarItem.defaultProps = {
   logo: false,
-};
-
-NavbarItem.propTypes = {
-  children: PropTypes.string.isRequired,
-  logo: PropTypes.bool,
 };
 
 export default NavbarItem;

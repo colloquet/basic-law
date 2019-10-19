@@ -1,25 +1,26 @@
+// @flow
 function MemoryStorage() {
   let structureLocalStorage = {};
-  this.set = (key, value) => {
+  this.set = (key: string, value: any) => {
     structureLocalStorage[key] = value;
   };
-  this.get = key => {
+  this.get = (key: string) => {
     if (typeof structureLocalStorage[key] !== 'undefined') {
       return structureLocalStorage[key];
     }
     return null;
   };
-  this.remove = key => delete structureLocalStorage[key];
+  this.remove = (key: string) => delete structureLocalStorage[key];
   this.clear = () => {
     structureLocalStorage = {};
   };
 }
 
 function LocalStorage() {
-  this.set = (key, value) => {
+  this.set = (key: string, value: any) => {
     window.localStorage.setItem(key, JSON.stringify(value));
   };
-  this.get = key => {
+  this.get = (key: string) => {
     try {
       return JSON.parse(window.localStorage.getItem(key));
     } catch (error) {
@@ -28,7 +29,7 @@ function LocalStorage() {
       return item;
     }
   };
-  this.remove = key => window.localStorage.removeItem(key);
+  this.remove = (key: string) => window.localStorage.removeItem(key);
   this.clear = () => window.localStorage.clear();
 }
 

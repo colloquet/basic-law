@@ -1,16 +1,34 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import store from './storage';
 
-const ThemeContext = React.createContext();
+import type { Node } from 'react';
+
+const ThemeContext = React.createContext<{
+  darkMode: boolean,
+  toggleDarkMode: () => void,
+}>({
+  darkMode: false,
+  toggleDarkMode: () => {},
+});
 
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-export class ThemeProvider extends React.Component {
-  constructor(props) {
+type Props = {
+  children: Node,
+};
+
+type State = {
+  darkMode: boolean,
+  toggleDarkMode: () => void,
+};
+
+export class ThemeProvider extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
-      darkMode: store.get('darkMode') === null ? darkModeMediaQuery.matches : store.get('darkMode'),
+      darkMode: store.get('darkMode') === null ? darkModeMediaQuery.matches : !!store.get('darkMode'),
       toggleDarkMode: this.toggleDarkMode,
     };
   }

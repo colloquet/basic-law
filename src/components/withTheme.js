@@ -1,10 +1,11 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '../ThemeContext';
 
-function withTheme(Component) {
-  return function ThemedComponent(props) {
+function withTheme<Config: {}>(Component: React.AbstractComponent<Config>) {
+  return function ThemedComponent(props: Object) {
     return (
       <ThemeConsumer>
         {context => <Component {...props} darkMode={context.darkMode} toggleDarkMode={context.toggleDarkMode} />}

@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "flow-bin": "^0.109.0",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-app-polyfill": "^1.0.1",
-    "react-dom": "^16.8.6",
+    "react": "^16.10.2",
+    "react-app-polyfill": "^1.0.4",
+    "react-dom": "^16.10.2",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
     "smooth-scroll": "^16.1.0",
     "stickyfilljs": "^2.0.5"
   },
@@ -20,10 +21,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "analyze": "react-scripts build && source-map-explorer build/static/js/main.*"
+    "analyze": "react-scripts build && source-map-explorer build/static/js/main.*",
+    "flow": "flow"
   },
   "devDependencies": {
-    "source-map-explorer": "^2.0.1"
+    "source-map-explorer": "^2.1.0"
   },
   "browserslist": [
     ">0.2%",

@@ -1,12 +1,20 @@
+// @flow
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { Check, X } from 'react-feather';
 
 import { shuffle } from '../../utils';
 import styles from './AnswerList.module.scss';
 
-function AnswerList({ qIndex, list }) {
-  const answers = useMemo(() => shuffle(list), [list])
+type Props = {
+  qIndex: number,
+  list: Array<{
+    text: string,
+    correct: boolean,
+  }>,
+};
+
+function AnswerList({ qIndex, list }: Props) {
+  const answers = useMemo(() => shuffle(list), [list]);
 
   return (
     <ul className={styles.list}>
@@ -32,9 +40,4 @@ function AnswerList({ qIndex, list }) {
   );
 }
 
-AnswerList.propTypes = {
-  qIndex: PropTypes.number.isRequired,
-  list: PropTypes.array.isRequired,
-};
-
-export default React.memo(AnswerList);
+export default React.memo<Props>(AnswerList);

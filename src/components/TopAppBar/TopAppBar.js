@@ -1,26 +1,46 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import type { Node } from 'react';
 
 import styles from './TopAppBar.module.scss';
 
-class TopAppBar extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    zIndex: PropTypes.number,
-    maxHeight: PropTypes.number,
-    disabled: PropTypes.bool,
-  };
+type Props = {
+  children: Node,
+  zIndex?: number,
+  maxHeight: number,
+  disabled?: boolean,
+};
 
+type State = {
+  top: number,
+};
+
+class TopAppBar extends React.PureComponent<Props, State> {
   static defaultProps = {
     zIndex: 1,
     maxHeight: 64,
     disabled: false,
   };
 
-  constructor(props) {
+  appBar: { current: null | HTMLDivElement };
+  lastScrollPosition: number;
+  topAppBarHeight: number;
+  wasDocked: boolean;
+  isDockedShowing: boolean;
+  currentAppBarOffsetTop: number;
+  isCurrentlyBeingResized: boolean;
+
+  constructor(props: Props) {
     super(props);
+
+    this.state = {
+      top: 0,
+    };
+
+    this.appBar = React.createRef();
     this.lastScrollPosition = window ? window.scrollY : 0;
-    this.topAppBarHeight = null;
+    this.topAppBarHeight = 0;
     this.wasDocked = true;
     this.isDockedShowing = true;
     this.currentAppBarOffsetTop = 0;
@@ -28,13 +48,15 @@ class TopAppBar extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.topAppBarHeight = this.appBar.clientHeight;
+    if (this.appBar.current) {
+      this.topAppBarHeight = this.appBar.current.clientHeight;
+    }
     if (!this.props.disabled) {
       this.init();
     }
   }
 
-  componentDidUpdate({ disabled }) {
+  componentDidUpdate({ disabled }: Props) {
     if (disabled !== this.props.disabled) {
       if (this.props.disabled) {
         this.destroy();
@@ -56,7 +78,7 @@ class TopAppBar extends React.PureComponent {
 
   destroy = () => {
     window.removeEventListener('scroll', this.scrollHandler);
-    this.appBar.style.top = 0;
+    this.setState({ top: 0 });
   };
 
   checkForUpdate = () => {
@@ -87,7 +109,7 @@ class TopAppBar extends React.PureComponent {
         offset = -this.props.maxHeight;
       }
 
-      this.appBar.style.top = `${offset}px`;
+      this.setState({ top: offset });
     }
   };
 
@@ -110,10 +132,11 @@ class TopAppBar extends React.PureComponent {
   };
 
   render() {
+    const { top } = this.state;
     const { children, zIndex } = this.props;
 
     return (
-      <div ref={ref => (this.appBar = ref)} style={{ zIndex }} className={styles.container}>
+      <div ref={this.appBar} style={{ zIndex, top: `${top}px` }} className={styles.container}>
         {children}
       </div>
     );

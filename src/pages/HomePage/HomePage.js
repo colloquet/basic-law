@@ -1,3 +1,4 @@
+// @flow
 import React, { useState, useEffect, useCallback } from 'react';
 import Helmet from 'react-helmet';
 import { X, Menu } from 'react-feather';
